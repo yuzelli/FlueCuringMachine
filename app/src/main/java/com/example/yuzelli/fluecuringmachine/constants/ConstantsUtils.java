@@ -5,5 +5,6 @@ package com.example.yuzelli.fluecuringmachine.constants;
  */
 
 public class ConstantsUtils {
-    private static final String URL = "127.0.0.1";
+    public static final String ADDRESS_URL = "http://60.205.214.66:8080/";
+    public static final String USERINFO_LOGIN = "devicemanage/login";
 }

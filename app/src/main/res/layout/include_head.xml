@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@drawable/title_bg"
+
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/rl_black"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="gone">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/ic_left"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_centerInParent="true"
+        android:text="互联网智能烤烟管理系统"
+        android:textSize="20sp"/>
+
+</RelativeLayout>
