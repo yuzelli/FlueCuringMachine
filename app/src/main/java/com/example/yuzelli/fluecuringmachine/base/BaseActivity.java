@@ -1,6 +1,7 @@
 package com.example.yuzelli.fluecuringmachine.base;
 
 import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
@@ -13,7 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends FragmentActivity {
     private Unbinder unbinder;
     protected Bundle savedInstanceState;
     @Override

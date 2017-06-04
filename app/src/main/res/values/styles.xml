@@ -16,4 +16,10 @@
         <item name="android:backgroundDimEnabled">false</item><!--模糊-->
     </style>
 
+    <!--圆角图片-->
+    <declare-styleable name="RoundImageView">
+        <attr name="borderThickness" format="integer" />
+        <attr name="borderInsideColor" format="color" />
+        <attr name="borderOutsideColor" format="color" />
+    </declare-styleable>
 </resources>
