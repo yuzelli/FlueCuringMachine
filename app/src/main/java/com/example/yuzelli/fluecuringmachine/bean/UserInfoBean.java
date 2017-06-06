@@ -10,10 +10,34 @@ import java.util.Map;
 
 public class UserInfoBean implements Serializable {
 
-    public static Map<String,String> getLogin(String userName,String password){
+    private String userName;
+    private String passWords;
+
+    public UserInfoBean(String userName, String passWords) {
+        this.userName = userName;
+        this.passWords = passWords;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassWords() {
+        return passWords;
+    }
+
+    public void setPassWords(String passWords) {
+        this.passWords = passWords;
+    }
+
+    public static Map<String,String> getLogin(String userName, String password){
         Map<String,String> map = new HashMap<>();
         map.put("username",userName);
-        map.put("Password",password);
+        map.put("password",password);
         return map;
 
     }
