@@ -11,6 +11,7 @@
         android:layout_height="50dp"
         android:visibility="gone">
         <ImageView
+            android:id="@+id/img_black"
             android:layout_width="25dp"
             android:layout_height="40dp"
             android:layout_centerInParent="true"
