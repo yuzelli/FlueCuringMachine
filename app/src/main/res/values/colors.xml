@@ -6,8 +6,8 @@
 
     <color name="color_title_bg">#287B98</color>
     <color name="color_line_bg">#cdcdcd</color>
-
-
+    <color name="color_skyblue">#5587ceeb</color> <!-- 天蓝色 -->
+    <color name="color_darkslateblue">#483d8b</color> <!-- 暗灰蓝色 -->
 
 
     <color name="transparent">#00000000</color><!--透明-->
