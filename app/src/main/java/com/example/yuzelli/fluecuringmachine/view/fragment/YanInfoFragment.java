@@ -33,7 +33,7 @@ public class YanInfoFragment extends BaseFragment {
 
     @Override
     protected void bindEvent(View v) {
-
+        tvTitle.setText("设备列表");
     }
 
     @Override
