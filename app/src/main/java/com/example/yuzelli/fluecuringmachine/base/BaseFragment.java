@@ -19,6 +19,7 @@ import butterknife.Unbinder;
 public abstract class BaseFragment extends Fragment{
     private View rootView;
     private Unbinder unbinder;
+    public final static String pageSize = "20/";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

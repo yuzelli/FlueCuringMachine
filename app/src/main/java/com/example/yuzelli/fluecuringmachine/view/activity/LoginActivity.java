@@ -99,6 +99,11 @@ public class LoginActivity extends BaseActivity {
     protected void binEvent() {
         context = this;
         handler = new LoginHandler();
+
+        UserInfoBean userInfo = (UserInfoBean) SharePreferencesUtil.readObject(this,ConstantsUtils.USER_LOGIN_INFO);
+        if (userInfo!=null){
+            MainActivity.actionStart(context);
+        }
     }
 
     @Override

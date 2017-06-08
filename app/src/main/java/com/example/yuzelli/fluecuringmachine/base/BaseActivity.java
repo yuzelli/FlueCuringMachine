@@ -17,6 +17,7 @@ import butterknife.Unbinder;
 public abstract class BaseActivity extends FragmentActivity {
     private Unbinder unbinder;
     protected Bundle savedInstanceState;
+    public final static String pageSize = "20/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
