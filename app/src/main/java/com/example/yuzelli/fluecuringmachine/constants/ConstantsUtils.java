@@ -9,10 +9,12 @@ public class ConstantsUtils {
     //用户登录成功
     public static final int LOGIN_GET_DATA = 0x00001001;
     public static final int EQUIPMENT_LIST_GET_DATA = 0x00001002;
+    public static final int EQUIPMENT_DETAIL_GET_DATA = 0x00001003;
 
     public static final String ADDRESS_URL = "http://60.205.214.66:8080/emanager/rest/";
     public static final String USERINFO_LOGIN = "devicemanage/login/";
     public static final String EQUIPMENT_LIST = "devicemanage/device/list/";
+    public static final String EQUIPMENT_DETAIL = "devicemanage/device/";
 
 
 
