@@ -14,14 +14,15 @@
         android:layout_below="@+id/include_head">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+           >
             <RelativeLayout
                 android:id="@+id/rl_detail1"
                 android:layout_width="match_parent"
-                android:layout_height="150.5dp">
+                android:layout_height="300.5dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp">
+                    android:layout_height="200dp">
                     <TextView
                         android:id="@+id/tv_shangxiapeng"
                         android:layout_width="50dp"
@@ -39,7 +40,7 @@
                     <LinearLayout
                         android:id="@+id/ll_title"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="60dp"
                         android:orientation="horizontal"
                         android:layout_toRightOf="@+id/v_line2">
                         <TextView
@@ -103,6 +104,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1.5"
                             android:gravity="center"
+                            android:textSize="30sp"
                             android:text="干球温度℃"/>
                         <View
                             android:layout_width="0.5dp"
@@ -114,6 +116,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1.5"
                             android:gravity="center"
+                            android:textSize="30sp"
                             android:text="湿球温度℃"/>
                         <View
                             android:layout_width="0.5dp"
@@ -125,6 +128,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
+                            android:textSize="30sp"
                             android:text="阶段时间"/>
                         <View
                             android:layout_width="0.5dp"
@@ -136,6 +140,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
+                            android:textSize="30sp"
                             android:text="总时间"/>
 
                     </LinearLayout>
@@ -144,11 +149,11 @@
                     android:id="@+id/v_line1"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="200dp"
                     android:background="@color/color_line_bg"/>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="100dp"
                     android:layout_below="@+id/v_line1">
 
                     <TextView
@@ -177,6 +182,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1.5"
                             android:gravity="center"
+                            android:textSize="30sp"
                             android:text="干球温度℃"/>
                         <View
                             android:layout_width="0.5dp"
@@ -188,6 +194,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1.5"
                             android:gravity="center"
+                            android:textSize="30sp"
                             android:text="湿球温度℃"/>
                         <View
                             android:layout_width="0.5dp"
@@ -229,87 +236,102 @@
                 <RelativeLayout
                     android:id="@+id/rl_set_tempAndTime"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp">
+                    android:layout_height="80dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="设置设备运行参数"
                          android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:textColor="@color/black"/>
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:src="@mipmap/ic_reght2"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"/>
                 </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/rl_detail1"
+                    android:background="@color/color_line_bg"/>
                 <RelativeLayout
                     android:id="@+id/rl_set_baking"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp">
+                    android:layout_height="80dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="烘烤位置"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:textColor="@color/black"/>
                     <TextView
                         android:id="@+id/tv_baking"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="下部叶"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="40dp"/>
+                        android:layout_marginRight="60dp"/>
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:src="@mipmap/ic_reght2"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"/>
                 </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/rl_detail1"
+                    android:background="@color/color_line_bg"/>
+
                 <RelativeLayout
                     android:id="@+id/rl_set_water_content"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp">
+                    android:layout_height="80dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="烘烟叶水分"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:textColor="@color/black"/>
                     <TextView
                         android:id="@+id/tv_water_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="多雨天"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="40dp"/>
+                        android:layout_marginRight="60dp"/>
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:src="@mipmap/ic_reght2"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"/>
                 </RelativeLayout>
 
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/rl_detail1"
+                    android:background="@color/color_line_bg"/>
                 <RelativeLayout
                     android:id="@+id/rl_set_wind"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="80dp"
                     android:visibility="gone">
                     <TextView
                         android:layout_width="wrap_content"
@@ -317,89 +339,109 @@
                         android:text="风速模式"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:textColor="@color/black"/>
                     <TextView
                         android:id="@+id/tv_wind"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="循环风速"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="40dp"/>
+                        android:layout_marginRight="60dp"/>
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:src="@mipmap/ic_reght2"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"/>
                 </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/rl_detail1"
+                    android:background="@color/color_line_bg"/>
                 <RelativeLayout
                     android:id="@+id/rl_voltage"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp">
+                    android:layout_height="80dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="电压"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:textColor="@color/black"/>
                     <TextView
                         android:id="@+id/tv_voltage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="236v"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"/>
                 </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/rl_detail1"
+                    android:background="@color/color_line_bg"/>
                 <RelativeLayout
                     android:id="@+id/rl_num"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp">
+                    android:layout_height="80dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="烘烤轮数"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:textColor="@color/black"/>
                     <TextView
                         android:id="@+id/tv_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="第一轮"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"/>
                 </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/rl_detail1"
+                    android:background="@color/color_line_bg"/>
                 <RelativeLayout
                     android:id="@+id/rl_set_system"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp">
+                    android:layout_height="80dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="系统参数设置"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:textColor="@color/black"/>
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:src="@mipmap/ic_reght2"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"/>
                 </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/rl_detail1"
+                    android:background="@color/color_line_bg"/>
             </LinearLayout>
         </RelativeLayout>
 
