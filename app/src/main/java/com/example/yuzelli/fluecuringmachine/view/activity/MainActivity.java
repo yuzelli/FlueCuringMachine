@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import com.example.yuzelli.fluecuringmachine.R;
 import com.example.yuzelli.fluecuringmachine.base.BaseActivity;
+import com.example.yuzelli.fluecuringmachine.bean.UserInfoBean;
+import com.example.yuzelli.fluecuringmachine.constants.ConstantsUtils;
+import com.example.yuzelli.fluecuringmachine.utils.SharePreferencesUtil;
 import com.example.yuzelli.fluecuringmachine.view.fragment.InformationFragment;
 import com.example.yuzelli.fluecuringmachine.view.fragment.MineFragment;
 import com.example.yuzelli.fluecuringmachine.view.fragment.YanInfoFragment;
@@ -40,7 +43,12 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void binEvent() {
         //oncreate方法中的回调
+
         initView();
+        UserInfoBean userInfo = (UserInfoBean) SharePreferencesUtil.readObject(this, ConstantsUtils.USER_LOGIN_INFO);
+        if (userInfo==null){
+            LoginActivity.actionStart(this);
+        }
     }
 
     @Override

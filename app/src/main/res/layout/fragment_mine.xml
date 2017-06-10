@@ -4,7 +4,47 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include android:id="@+id/include_head"
+    <include
+        android:id="@+id/include_head"
         layout="@layout/include_head" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/include_head"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_customer_service"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/color_skyblue"
+            android:gravity="center"
+            android:text="联系客服"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/tv_change_pass"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/darkgray"
+            android:gravity="center"
+            android:text="修改密码"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/tv_exit_login"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/salmon"
+            android:gravity="center"
+            android:text="退出登陆"
+            android:textSize="30dp" />
+
+
+    </LinearLayout>
 
 </RelativeLayout>

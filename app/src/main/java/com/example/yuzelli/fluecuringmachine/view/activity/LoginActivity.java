@@ -1,6 +1,7 @@
 package com.example.yuzelli.fluecuringmachine.view.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -57,11 +58,11 @@ public class LoginActivity extends BaseActivity {
 
                 JSONObject object = new JSONObject(result);
                 int code = object.optInt("errorCode");
-                switch (code){
+                switch (code) {
                     case 10010:
                         Message msg = new Message();
                         msg.what = ConstantsUtils.LOGIN_GET_DATA;
-                        UserInfoBean userInfo = new UserInfoBean(userName,password);
+                        UserInfoBean userInfo = new UserInfoBean(userName, password);
                         msg.obj = userInfo;
                         showToast("登陆成功！");
                         handler.sendMessage(msg);
@@ -99,16 +100,16 @@ public class LoginActivity extends BaseActivity {
     protected void binEvent() {
         context = this;
         handler = new LoginHandler();
-
-        UserInfoBean userInfo = (UserInfoBean) SharePreferencesUtil.readObject(this,ConstantsUtils.USER_LOGIN_INFO);
-        if (userInfo!=null){
-            MainActivity.actionStart(context);
-        }
     }
 
     @Override
     protected void fillData() {
 
+    }
+
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
     }
 
     class LoginHandler extends Handler {
@@ -119,8 +120,12 @@ public class LoginActivity extends BaseActivity {
                 case ConstantsUtils.LOGIN_GET_DATA:
                     UserInfoBean userInfo = (UserInfoBean) msg.obj;
                     SharePreferencesUtil.saveObject(context, ConstantsUtils.USER_LOGIN_INFO, userInfo);
-                    MainActivity.actionStart(context);
-                    finish();
+                    userInfo = (UserInfoBean) SharePreferencesUtil.readObject(context, ConstantsUtils.USER_LOGIN_INFO);
+                    if (userInfo != null) {
+                        finish();
+                    }else {
+                        showToast("保存用户信息失败！请重新登陆！");
+                    }
                     break;
                 default:
                     break;

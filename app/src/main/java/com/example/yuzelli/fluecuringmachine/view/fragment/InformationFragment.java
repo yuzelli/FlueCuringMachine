@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.yuzelli.fluecuringmachine.R;
 import com.example.yuzelli.fluecuringmachine.base.BaseFragment;
+import com.example.yuzelli.fluecuringmachine.utils.ListViewForScrollViewUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,6 +22,13 @@ public class InformationFragment extends BaseFragment {
     @BindView(R.id.tv_title)
     TextView tvTitle;
     Unbinder unbinder;
+    @BindView(R.id.lv_install)
+    ListViewForScrollViewUtil lvInstall;
+    @BindView(R.id.lv_getReady)
+    ListViewForScrollViewUtil lvGetReady;
+    @BindView(R.id.lv_maintain)
+    ListViewForScrollViewUtil lvMaintain;
+    Unbinder unbinder1;
 
     @Override
     protected int layoutInit() {
@@ -38,4 +46,17 @@ public class InformationFragment extends BaseFragment {
     }
 
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder1 = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder1.unbind();
+    }
 }
