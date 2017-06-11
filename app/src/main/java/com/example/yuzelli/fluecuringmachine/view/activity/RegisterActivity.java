@@ -3,6 +3,7 @@ package com.example.yuzelli.fluecuringmachine.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -70,10 +71,8 @@ public class RegisterActivity extends BaseActivity {
                 int code = object.optInt("errorCode");
                 switch (code){
                     case 0:
-//                        Message msg = new Message();
-//                        msg.what = ConstantsUtils.LOGIN_GET_DATA;
-//
-//                        showToast("成功！");
+                        finish();
+                        showToast("注册成功！");
                         break;
                     case 10010:
 
@@ -113,5 +112,20 @@ public class RegisterActivity extends BaseActivity {
     public static void actionStart(Context context) {
         Intent intent = new Intent(context, RegisterActivity.class);
         context.startActivity(intent);
+    }
+
+    class RegisterHandler extends Handler{
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case ConstantsUtils.REGISTER_SUCCESS:
+
+                    break;
+                default:
+                    break;
+
+            }
+        }
     }
 }
