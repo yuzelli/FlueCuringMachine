@@ -4,10 +4,91 @@
     android:id="@+id/activity_change_pass"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.yuzelli.fluecuringmachine.view.activity.ChangePassActivity">
+    <include android:id="@+id/include_head"
+        layout="@layout/include_head" />
+    <com.example.yuzelli.fluecuringmachine.widgets.RoundImageView
+        android:id="@+id/img_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/include_head"
+        android:src="@drawable/aaaa" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/view_shape_blue_line"
+                android:inputType="textPassword"
+                android:paddingLeft="10dp"
+                android:hint="请输入新密码"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@mipmap/ic_lock" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/et_okpassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/view_shape_blue_line"
+                android:inputType="textPassword"
+                android:paddingLeft="10dp"
+                android:hint="请再次输入新密码"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@mipmap/ic_lock" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tv_change_pass"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/view_shape_blue_line"
+            android:gravity="center"
+            android:text="修改密码"
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
+
+    </LinearLayout>
 </RelativeLayout>

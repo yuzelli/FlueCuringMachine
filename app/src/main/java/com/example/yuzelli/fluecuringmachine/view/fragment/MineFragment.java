@@ -19,6 +19,7 @@ import com.example.yuzelli.fluecuringmachine.base.BaseFragment;
 import com.example.yuzelli.fluecuringmachine.bean.UserInfoBean;
 import com.example.yuzelli.fluecuringmachine.constants.ConstantsUtils;
 import com.example.yuzelli.fluecuringmachine.utils.SharePreferencesUtil;
+import com.example.yuzelli.fluecuringmachine.view.activity.ChangePassActivity;
 import com.example.yuzelli.fluecuringmachine.view.activity.MainActivity;
 
 import butterknife.BindView;
@@ -77,7 +78,7 @@ public class MineFragment extends BaseFragment {
                 String password = et_input.getText().toString().trim();
                 if (password.equals(userInfo.getPassWords())){
                     dialog.dismiss();
-
+                    ChangePassActivity.actionStart(getActivity());
                 }else {
                     showToast("密码错误");
                 }

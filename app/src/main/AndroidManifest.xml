@@ -24,10 +24,11 @@
         >
         <activity
             android:name=".view.activity.LoginActivity"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask" />
         <activity android:name=".view.activity.RegisterActivity" />
         <activity android:name=".view.activity.EquipmentDetailActivity" />
-        <activity android:name=".view.activity.ChangePassActivity"></activity>
+        <activity android:name=".view.activity.ChangePassActivity" />
+        <activity android:name=".view.activity.InfomationDetailActivity"></activity>
     </application>
 
 </manifest>
