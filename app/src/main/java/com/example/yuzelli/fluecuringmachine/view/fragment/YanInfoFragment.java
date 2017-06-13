@@ -78,7 +78,7 @@ public class YanInfoFragment extends BaseFragment {
     private void doGetEquipmentList() {
 
         StringBuffer url = new StringBuffer(ConstantsUtils.ADDRESS_URL).append(ConstantsUtils.EQUIPMENT_LIST);
-        url.append(pageNo + "/").append(pageSize).append("page");
+        url.append(pageNo + "/").append(pageSize).append("/"+"page").append("/"+getToken());
 
         OkHttpClientManager.getInstance().getAsync(url.toString(), new OkHttpClientManager.DataCallBack() {
             @Override

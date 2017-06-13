@@ -19,6 +19,7 @@ public class ConstantsUtils {
     public static final String EQUIPMENT_DETAIL = "devicemanage/device/";
     public static final String REGISTER_POST = "devicemanage/user/add";
     public static final String CHANG_USER_PASS_POST = "devicemanage/user/change";
+    public static final String SET_TEMP_POST = "devicemanage/task/";
 
 
 

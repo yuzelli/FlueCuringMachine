@@ -28,4 +28,19 @@
         android:text="互联网智能烤烟管理系统"
         android:textSize="20sp"/>
 
+    <TextView
+        android:id="@+id/tv_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:textColor="@color/white"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="系统"
+        android:padding="5dp"
+         android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/view_shape_blue_bg"
+        android:textSize="20sp"/>
+
 </RelativeLayout>

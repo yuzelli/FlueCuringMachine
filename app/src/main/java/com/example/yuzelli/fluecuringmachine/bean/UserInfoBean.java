@@ -12,10 +12,12 @@ public class UserInfoBean implements Serializable {
 
     private String userName;
     private String passWords;
+    private String token;
 
-    public UserInfoBean(String userName, String passWords) {
+    public UserInfoBean(String userName, String passWords,String token) {
         this.userName = userName;
         this.passWords = passWords;
+        this.token = token;
     }
 
     public String getUserName() {
@@ -32,6 +34,14 @@ public class UserInfoBean implements Serializable {
 
     public void setPassWords(String passWords) {
         this.passWords = passWords;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public static Map<String,String> getLogin(String userName, String password){

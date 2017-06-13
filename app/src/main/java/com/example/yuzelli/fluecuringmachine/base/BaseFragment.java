@@ -7,7 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.example.yuzelli.fluecuringmachine.bean.UserInfoBean;
+import com.example.yuzelli.fluecuringmachine.constants.ConstantsUtils;
 import com.example.yuzelli.fluecuringmachine.utils.MyToast;
+import com.example.yuzelli.fluecuringmachine.utils.SharePreferencesUtil;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -36,7 +39,11 @@ public abstract class BaseFragment extends Fragment{
         return rootView;
     }
     protected abstract int layoutInit();
-
+    public String getToken(){
+        UserInfoBean userInfoBean = (UserInfoBean) SharePreferencesUtil.readObject(getActivity(), ConstantsUtils.USER_LOGIN_INFO);
+//        String token = userInfoBean.getToken();
+        return "ssssssssss";
+    }
     /**
      * 绑定事件
      *

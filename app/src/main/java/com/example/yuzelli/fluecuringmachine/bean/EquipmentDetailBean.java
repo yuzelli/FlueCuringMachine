@@ -138,7 +138,7 @@ public class EquipmentDetailBean implements Serializable {
         this.alarms = alarms;
     }
 
-    public static class SystemDataBean {
+    public static class SystemDataBean implements Serializable{
         private long systemdataId;
         private int go;
         private String period;
@@ -357,7 +357,7 @@ public class EquipmentDetailBean implements Serializable {
         }
     }
 
-    public static class DeviceBean {
+    public static class DeviceBean implements Serializable{
         private long deviceId;
         private String deviceName;
         private String deviceSn;
@@ -450,7 +450,7 @@ public class EquipmentDetailBean implements Serializable {
         }
     }
 
-    public static class CoreDataBean {
+    public static class CoreDataBean implements Serializable{
         private long coredataId;
         private int coreType;
         private Object creatTime;

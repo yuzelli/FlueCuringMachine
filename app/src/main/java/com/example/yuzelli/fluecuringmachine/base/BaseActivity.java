@@ -8,7 +8,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.example.yuzelli.fluecuringmachine.bean.UserInfoBean;
+import com.example.yuzelli.fluecuringmachine.constants.ConstantsUtils;
 import com.example.yuzelli.fluecuringmachine.utils.MyToast;
+import com.example.yuzelli.fluecuringmachine.utils.SharePreferencesUtil;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -51,6 +54,12 @@ public abstract class BaseActivity extends FragmentActivity {
      */
     protected void showToast(String msg) {
         MyToast.show(msg);
+    }
+
+    public String getToken(){
+        UserInfoBean userInfoBean = (UserInfoBean) SharePreferencesUtil.readObject(this, ConstantsUtils.USER_LOGIN_INFO);
+      //  String token = userInfoBean.getToken();
+         return "ssssssssss";
     }
     @Override
     protected void onResume() {

@@ -62,7 +62,9 @@ public class LoginActivity extends BaseActivity {
                     case 10010:
                         Message msg = new Message();
                         msg.what = ConstantsUtils.LOGIN_GET_DATA;
-                        UserInfoBean userInfo = new UserInfoBean(userName, password);
+                        JSONObject json = object.optJSONObject("data");
+                        String token = json.optString("token");
+                        UserInfoBean userInfo = new UserInfoBean(userName, password,token);
                         msg.obj = userInfo;
                         showToast("登陆成功！");
                         handler.sendMessage(msg);

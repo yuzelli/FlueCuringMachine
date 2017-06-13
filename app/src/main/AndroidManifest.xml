@@ -28,7 +28,10 @@
         <activity android:name=".view.activity.RegisterActivity" />
         <activity android:name=".view.activity.EquipmentDetailActivity" />
         <activity android:name=".view.activity.ChangePassActivity" />
-        <activity android:name=".view.activity.InfomationDetailActivity"></activity>
+        <activity android:name=".view.activity.InfomationDetailActivity" />
+        <activity android:name=".view.activity.ShowTempActivity" />
+        <activity android:name=".view.activity.SetSystemActivity" />
+        <activity android:name=".view.activity.SetSytemParametersActivity"></activity>
     </application>
 
 </manifest>
