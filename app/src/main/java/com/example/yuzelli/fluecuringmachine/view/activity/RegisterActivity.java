@@ -58,7 +58,7 @@ public class RegisterActivity extends BaseActivity {
             showToast("两次密码输入不一致！");
         }
 
-        OkHttpClientManager.getInstance().postAsync(ConstantsUtils.ADDRESS_URL + ConstantsUtils.REGISTER_POST, UserInfoBean.getLogin(userName, passWorid), new OkHttpClientManager.DataCallBack() {
+        OkHttpClientManager.getInstance().postAsync(ConstantsUtils.ADDRESS_URL + ConstantsUtils.REGISTER_POST, UserInfoBean.getChange(userName, passWorid,getToken()), new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {
                 showToast("请求数据失败！");

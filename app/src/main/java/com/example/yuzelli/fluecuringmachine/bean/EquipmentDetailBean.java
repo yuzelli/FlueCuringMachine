@@ -9,6 +9,7 @@ import java.util.List;
 
 public class EquipmentDetailBean implements Serializable {
 
+
     /**
      * systemdataId : 1496676071166
      * go : 1
@@ -101,10 +102,10 @@ public class EquipmentDetailBean implements Serializable {
      * systemData : {"systemdataId":1496676071166,"go":1,"period":"1.6","periodNum":"0","upwetTemperature":"24.1","updryTemperature":"24.1","downwetTemperature":"24.8","downdryTemperature":"24.9","wetTarget":"34.0","dryTarget":"36.0","wetAlarm":"1","wetAlarmWait":"1","wetAlarmDown":"11","dryAlarm":"1","dryAlarmWait":"1","dryAlarmDown":"1","powerAlarmUp":"250","powerAlarmDown":"200","powerAlarmWait":"1","totalTime":"0","systemStatus":"1111","voltage":"225V","times":0,"deviceTime":"19900717 12:25:21"}
      * device : {"deviceId":1496676071166,"deviceName":"烤烟机","deviceSn":"ffb3e899","deviceType":"BBD-E","deviceGroup":"xian","state":-1,"systemdataId":1496676071166,"coredataId":1496676071166,"alarmId":1496676071166,"createTime":"2016-05-07 13:28:00.0"}
      * coreData : {"coredataId":1496676071166,"coreType":0,"creatTime":null,"wetSet1":"34","wetSet2":"36","wetSet3":"37","wetSet4":"37","wetSet5":"38","wetSet6":"38","wetSet7":"39","wetSet8":"39","wetSet9":"40","wetSet10":"42","drySet1":"36","drySet2":"38","drySet3":"40","drySet4":"42","drySet5":"46","drySet6":"48","drySet7":"50","drySet8":"54","drySet9":"60","drySet10":"68","timeSet1":"2","timeSet2":"15","timeSet3":"2","timeSet4":"3","timeSet5":"4","timeSet6":"2","timeSet7":"2","timeSet8":"5","timeSet9":"2","timeSet10":"12","timeUp1":"2","timeUp2":"4","timeUp3":"4","timeUp4":"8","timeUp5":"4","timeUp6":"4","timeUp7":"5","timeUp8":"6","timeUp9":"8"}
-     * alarms : []
+     * alarms : ["1","2","3","4","5","6","7","8","9","10"]
      */
 
-    private List<?> alarms;
+    private List<String> alarms;
 
     public SystemDataBean getSystemData() {
         return systemData;
@@ -130,11 +131,11 @@ public class EquipmentDetailBean implements Serializable {
         this.coreData = coreData;
     }
 
-    public List<?> getAlarms() {
+    public List<String> getAlarms() {
         return alarms;
     }
 
-    public void setAlarms(List<?> alarms) {
+    public void setAlarms(List<String> alarms) {
         this.alarms = alarms;
     }
 
@@ -357,7 +358,7 @@ public class EquipmentDetailBean implements Serializable {
         }
     }
 
-    public static class DeviceBean implements Serializable{
+    public static class DeviceBean implements Serializable {
         private long deviceId;
         private String deviceName;
         private String deviceSn;
@@ -450,7 +451,7 @@ public class EquipmentDetailBean implements Serializable {
         }
     }
 
-    public static class CoreDataBean implements Serializable{
+    public static class CoreDataBean implements Serializable {
         private long coredataId;
         private int coreType;
         private Object creatTime;

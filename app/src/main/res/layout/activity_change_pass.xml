@@ -14,7 +14,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/include_head"
-        android:src="@drawable/aaaa" />
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_app"/>
 
     <LinearLayout
         android:layout_width="match_parent"

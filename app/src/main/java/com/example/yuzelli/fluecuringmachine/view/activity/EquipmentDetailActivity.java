@@ -30,6 +30,7 @@ import com.google.gson.Gson;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -80,6 +81,7 @@ public class EquipmentDetailActivity extends BaseActivity {
     private EquipmentDetailBean equiDetail;
     private EDHandler handler;
     private Context context;
+    private String deviceID;
 
     @OnClick({R.id.rl_set_tempAndTime, R.id.rl_set_baking, R.id.rl_set_water_content, R.id.rl_set_system})
     public void onViewClick(View v) {
@@ -118,12 +120,12 @@ public class EquipmentDetailActivity extends BaseActivity {
             }
         });
         Intent intent = getIntent();
-        doGetEquimentDetailData(intent.getStringExtra("getCoredataId"));
+        deviceID = intent.getStringExtra("getCoredataId");
     }
 
     private void doGetEquimentDetailData(String eq_sn) {
         StringBuffer url = new StringBuffer(ConstantsUtils.ADDRESS_URL).append(ConstantsUtils.EQUIPMENT_DETAIL);
-        url.append(eq_sn + "/").append("detail").append("/"+getToken());
+        url.append(eq_sn + "/").append("detail").append("/" + getToken());
         OkHttpClientManager.getInstance().getAsync(url.toString(), new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {
@@ -157,6 +159,7 @@ public class EquipmentDetailActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        doGetEquimentDetailData(deviceID);
     }
 
     @Override
@@ -211,10 +214,11 @@ public class EquipmentDetailActivity extends BaseActivity {
 
     /**
      * 设置烘烤位置
+     *
      * @param systemStatus
      */
     private void SetSystem(String systemStatus) {
-        if (systemStatus.length()==2){
+        if (systemStatus.length() == 2) {
             tvBaking.setText("未设置");
             tvWaterContent.setText("未设置");
             return;
@@ -242,7 +246,7 @@ public class EquipmentDetailActivity extends BaseActivity {
             default:
                 break;
         }
-        if (systemStatus.length()==3){
+        if (systemStatus.length() == 3) {
             tvWaterContent.setText("未设置");
             return;
         }
@@ -266,18 +270,46 @@ public class EquipmentDetailActivity extends BaseActivity {
      * 判断警告信息
      */
     private void doShowWarning() {
-//         if (equiDetail.getSystemData().getGo()!=1){
-//             showWarning("设备未连接\n可能关机或者停电");
-//         }
-//        String voltage = equiDetail.getSystemData().getVoltage();
-//        voltage = voltage.substring(0,voltage.length()-1);
-//        int volValue  = Integer.valueOf(voltage);
-//        if(volValue>260){
-//            showWarning("电压超过260V\n检查供电电源");
-//        }else if (volValue<165){
-//            showWarning("电压低于165V\n检查供电电源");
-//        }
-//        if ()
+
+        ArrayList<Integer> warn = new ArrayList<>();
+        for (String str : equiDetail.getAlarms()) {
+            int index = Integer.valueOf(str);
+            switch (index) {
+                case 1:
+                    showWarning("偏高",1);
+                    break;
+                case 2:
+                    showWarning("严重偏高\n检查传感器或者设备",0);
+                    break;
+                case 3:
+                    showWarning("运行超时\n请重新确认数据",1);
+                    break;
+                case 4:
+                    showWarning("电压超过260V\n检查供电电源",0);
+                    break;
+                case 5:
+                    showWarning("电压低于170V\n检查供电电源",0);
+                    break;
+                case 6:
+                    showWarning("设备未连接\n可能关机或者停机",1);
+                    break;
+                case 7:
+                    showWarning("风机过载\n请检查风机和供电电源",0);
+                    break;
+                case 8:
+                    showWarning("风机无电流\n请检查风机和供电电源",0);
+                    break;
+                case 9:
+                    showWarning("目标棚传感器故障\n检查传感器或者设备",0);
+                    break;
+                case 10:
+                    showWarning("参考棚传感器故障\n检查传感器或者设备",1);
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 
     /**
@@ -304,11 +336,14 @@ public class EquipmentDetailActivity extends BaseActivity {
                 String password = et_input.getText().toString().trim();
                 if (password.equals(userInfo.getPassWords())) {
                     dialog.dismiss();
-                    if (where.equals("1")){
-                        ShowTempActivity.actionStart(context, equiDetail.getCoreData(),equiDetail.getDevice().getDeviceId()+"");
+                    if (where.equals("1")) {
+                        ShowTempActivity.actionStart(context, equiDetail.getCoreData(), equiDetail.getDevice().getDeviceId() + "");
                     }
-                    if (where.equals("2")){
-
+                    if (where.equals("2")) {
+                        SetSystemActivity.actionStart(context, equiDetail.getSystemData().getSystemStatus(), equiDetail.getDevice().getDeviceId() + "");
+                    }
+                    if (where.equals("3")) {
+                        SetSytemParametersActivity.actionStart(context, equiDetail);
                     }
 
                 } else {
@@ -322,12 +357,18 @@ public class EquipmentDetailActivity extends BaseActivity {
         dialog.show();
     }
 
-    private void showWarning(String title) {
+    private void showWarning(String title,int index) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);// 构建
-        builder.setTitle("提示框");
+        if (index==1){
+            builder.setTitle("警告！");
+        }else {
+            builder.setTitle("严重警告！");
+        }
+
         builder.setMessage(title);
         // 添加确定按钮 listener事件是继承与DialogInerface的
         builder.setPositiveButton("确定", null);
+         builder.show();
 
 
     }

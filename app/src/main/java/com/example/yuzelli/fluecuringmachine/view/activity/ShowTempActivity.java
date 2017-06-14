@@ -141,6 +141,7 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
     protected void binEvent() {
         coredata = (EquipmentDetailBean.CoreDataBean) getIntent().getSerializableExtra("coredata");
         deviceId =  getIntent().getStringExtra("deviceId");
+        findViewById(R.id.rl_black).setVisibility(View.VISIBLE);
         tvTitle.setText("当前设备详情");
         tvAction.setVisibility(View.VISIBLE);
         tvAction.setText("去设置");
@@ -371,7 +372,8 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
                 int code = object.optInt("errorCode");
                 switch (code) {
                     case 0:
-
+                        finish();
+                        showToast("修改成功！");
                         break;
                     case 10001:
                         showToast("参数错误！");
