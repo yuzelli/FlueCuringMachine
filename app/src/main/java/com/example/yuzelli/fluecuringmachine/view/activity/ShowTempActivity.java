@@ -23,6 +23,7 @@ import com.example.yuzelli.fluecuringmachine.bean.EquipmentDetailBean;
 import com.example.yuzelli.fluecuringmachine.bean.UserInfoBean;
 import com.example.yuzelli.fluecuringmachine.constants.ConstantsUtils;
 import com.example.yuzelli.fluecuringmachine.https.OkHttpClientManager;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -224,12 +225,12 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
                 if (tvAction.getText().toString().trim().equals("去设置")) {
                     doBeginSetAction();
                 } else if (tvAction.getText().toString().trim().equals("设置完成")) {
-                    for (Boolean b : settingFlags){
-                        if (b.booleanValue()==false){
-                            showToast("请全部设置完成后在上传！");
-                            return;
-                        }
-                    }
+//                    for (Boolean b : settingFlags){
+//                        if (b.booleanValue()==false){
+//                            showToast("请全部设置完成后在上传！");
+//                            return;
+//                        }
+//                    }
                     doPushActionSetting();
                 }
                 break;
@@ -397,56 +398,101 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
     private Map<String,String> setMap() {
         Map<String ,String> map = new HashMap<>();
         map.put("token",getToken());
-        JSONObject json = new JSONObject();
-        try {
-            json.put("coredataId",0);
-            json.put("coreType",1);
-            json.put("creatTime",null);
-            json.put("wetSet1",tvWetSet1.getText().toString().trim());
-            json.put("wetSet2",tvWetSet2.getText().toString().trim());
-            json.put("wetSet3",tvWetSet3.getText().toString().trim());
-            json.put("wetSet4",tvWetSet4.getText().toString().trim());
-            json.put("wetSet5",tvWetSet5.getText().toString().trim());
-            json.put("wetSet6",tvWetSet6.getText().toString().trim());
-            json.put("wetSet7",tvWetSet7.getText().toString().trim());
-            json.put("wetSet8",tvWetSet8.getText().toString().trim());
-            json.put("wetSet9",tvWetSet9.getText().toString().trim());
-            json.put("wetSet10",tvWetSet10.getText().toString().trim());
-            json.put("drySet1",tvDrySet1.getText().toString().trim());
-            json.put("drySet2",tvDrySet2.getText().toString().trim());
-            json.put("drySet3",tvDrySet3.getText().toString().trim());
-            json.put("drySet4",tvDrySet4.getText().toString().trim());
-            json.put("drySet5",tvDrySet5.getText().toString().trim());
-            json.put("drySet6",tvDrySet6.getText().toString().trim());
-            json.put("drySet7",tvDrySet7.getText().toString().trim());
-            json.put("drySet8",tvDrySet8.getText().toString().trim());
-            json.put("drySet9",tvDrySet9.getText().toString().trim());
-            json.put("drySet10",tvDrySet10.getText().toString().trim());
-            json.put("timeSet1",tvTimeSet1.getText().toString().trim());
-            json.put("timeSet2",tvTimeSet2.getText().toString().trim());
-            json.put("timeSet3",tvTimeSet3.getText().toString().trim());
-            json.put("timeSet4",tvTimeSet4.getText().toString().trim());
-            json.put("timeSet5",tvTimeSet5.getText().toString().trim());
-            json.put("timeSet6",tvTimeSet6.getText().toString().trim());
-            json.put("timeSet7",tvTimeSet7.getText().toString().trim());
-            json.put("timeSet8",tvTimeSet8.getText().toString().trim());
-            json.put("timeSet9",tvTimeSet9.getText().toString().trim());
-            json.put("timeSet10",tvTimeSet10.getText().toString().trim());
-            json.put("timeUp1",tvTimeUp1.getText().toString().trim());
-            json.put("timeUp2",tvTimeUp2.getText().toString().trim());
-            json.put("timeUp3",tvTimeUp3.getText().toString().trim());
-            json.put("timeUp4",tvTimeUp4.getText().toString().trim());
-            json.put("timeUp5",tvTimeUp5.getText().toString().trim());
-            json.put("timeUp6",tvTimeUp6.getText().toString().trim());
-            json.put("timeUp7",tvTimeUp7.getText().toString().trim());
-            json.put("timeUp8",tvTimeUp8.getText().toString().trim());
-            json.put("timeUp9",tvTimeUp9.getText().toString().trim());
+        String content = null;
 
+//            json.put("coredataId",deviceId);
+//            json.put("coreType",1);
+//            json.put("creatTime",null);
+//            json.put("wetSet1",tvWetSet1.getText().toString().trim());
+//            json.put("wetSet2",tvWetSet2.getText().toString().trim());
+//            json.put("wetSet3",tvWetSet3.getText().toString().trim());
+//            json.put("wetSet4",tvWetSet4.getText().toString().trim());
+//            json.put("wetSet5",tvWetSet5.getText().toString().trim());
+//            json.put("wetSet6",tvWetSet6.getText().toString().trim());
+//            json.put("wetSet7",tvWetSet7.getText().toString().trim());
+//            json.put("wetSet8",tvWetSet8.getText().toString().trim());
+//            json.put("wetSet9",tvWetSet9.getText().toString().trim());
+//            json.put("wetSet10",tvWetSet10.getText().toString().trim());
+//            json.put("drySet1",tvDrySet1.getText().toString().trim());
+//            json.put("drySet2",tvDrySet2.getText().toString().trim());
+//            json.put("drySet3",tvDrySet3.getText().toString().trim());
+//            json.put("drySet4",tvDrySet4.getText().toString().trim());
+//            json.put("drySet5",tvDrySet5.getText().toString().trim());
+//            json.put("drySet6",tvDrySet6.getText().toString().trim());
+//            json.put("drySet7",tvDrySet7.getText().toString().trim());
+//            json.put("drySet8",tvDrySet8.getText().toString().trim());
+//            json.put("drySet9",tvDrySet9.getText().toString().trim());
+//            json.put("drySet10",tvDrySet10.getText().toString().trim());
+//            json.put("timeSet1",tvTimeSet1.getText().toString().trim());
+//            json.put("timeSet2",tvTimeSet2.getText().toString().trim());
+//            json.put("timeSet3",tvTimeSet3.getText().toString().trim());
+//            json.put("timeSet4",tvTimeSet4.getText().toString().trim());
+//            json.put("timeSet5",tvTimeSet5.getText().toString().trim());
+//            json.put("timeSet6",tvTimeSet6.getText().toString().trim());
+//            json.put("timeSet7",tvTimeSet7.getText().toString().trim());
+//            json.put("timeSet8",tvTimeSet8.getText().toString().trim());
+//            json.put("timeSet9",tvTimeSet9.getText().toString().trim());
+//            json.put("timeSet10",tvTimeSet10.getText().toString().trim());
+//            json.put("timeUp1",tvTimeUp1.getText().toString().trim());
+//            json.put("timeUp2",tvTimeUp2.getText().toString().trim());
+//            json.put("timeUp3",tvTimeUp3.getText().toString().trim());
+//            json.put("timeUp4",tvTimeUp4.getText().toString().trim());
+//            json.put("timeUp5",tvTimeUp5.getText().toString().trim());
+//            json.put("timeUp6",tvTimeUp6.getText().toString().trim());
+//            json.put("timeUp7",tvTimeUp7.getText().toString().trim());
+//            json.put("timeUp8",tvTimeUp8.getText().toString().trim());
+//            json.put("timeUp9",tvTimeUp9.getText().toString().trim());
+          EquipmentDetailBean.CoreDataBean coreDataBean = new EquipmentDetailBean.CoreDataBean();
+        coreDataBean.setCoredataId(Long.valueOf(deviceId));
+        coreDataBean.setCoreType(1);
+        coreDataBean.setCreatTime(System.currentTimeMillis());
+        coreDataBean.setWetSet1(tvWetSet1.getText().toString().trim());
+        coreDataBean.setWetSet2(tvWetSet2.getText().toString().trim());
+        coreDataBean.setWetSet3(tvWetSet3.getText().toString().trim());
+        coreDataBean.setWetSet4(tvWetSet4.getText().toString().trim());
+        coreDataBean.setWetSet5(tvWetSet5.getText().toString().trim());
+        coreDataBean.setWetSet6(tvWetSet6.getText().toString().trim());
+        coreDataBean.setWetSet7(tvWetSet7.getText().toString().trim());
+        coreDataBean.setWetSet8(tvWetSet8.getText().toString().trim());
+        coreDataBean.setWetSet9(tvWetSet9.getText().toString().trim());
+        coreDataBean.setWetSet10(tvWetSet10.getText().toString().trim());
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        map.put("coreDate",json.toString());
+        coreDataBean.setDrySet1(tvDrySet1.getText().toString().trim());
+        coreDataBean.setDrySet2(tvDrySet2.getText().toString().trim());
+        coreDataBean.setDrySet3(tvDrySet3.getText().toString().trim());
+        coreDataBean.setDrySet4(tvDrySet4.getText().toString().trim());
+        coreDataBean.setDrySet5(tvDrySet5.getText().toString().trim());
+        coreDataBean.setDrySet6(tvDrySet6.getText().toString().trim());
+        coreDataBean.setDrySet7(tvDrySet7.getText().toString().trim());
+        coreDataBean.setDrySet8(tvDrySet8.getText().toString().trim());
+        coreDataBean.setDrySet9(tvDrySet9.getText().toString().trim());
+        coreDataBean.setDrySet10(tvDrySet10.getText().toString().trim());
+
+        coreDataBean.setTimeSet1(tvTimeSet1.getText().toString().trim());
+        coreDataBean.setTimeSet2(tvTimeSet2.getText().toString().trim());
+        coreDataBean.setTimeSet3(tvTimeSet3.getText().toString().trim());
+        coreDataBean.setTimeSet4(tvTimeSet4.getText().toString().trim());
+        coreDataBean.setTimeSet5(tvTimeSet5.getText().toString().trim());
+        coreDataBean.setTimeSet6(tvTimeSet6.getText().toString().trim());
+        coreDataBean.setTimeSet7(tvTimeSet7.getText().toString().trim());
+        coreDataBean.setTimeSet8(tvTimeSet8.getText().toString().trim());
+        coreDataBean.setTimeSet9(tvTimeSet9.getText().toString().trim());
+        coreDataBean.setTimeSet10(tvTimeSet10.getText().toString().trim());
+
+        coreDataBean.setTimeUp1(tvTimeUp1.getText().toString().trim());
+        coreDataBean.setTimeUp2(tvTimeUp2.getText().toString().trim());
+        coreDataBean.setTimeUp3(tvTimeUp3.getText().toString().trim());
+        coreDataBean.setTimeUp4(tvTimeUp4.getText().toString().trim());
+        coreDataBean.setTimeUp5(tvTimeUp5.getText().toString().trim());
+        coreDataBean.setTimeUp6(tvTimeUp6.getText().toString().trim());
+        coreDataBean.setTimeUp7(tvTimeUp7.getText().toString().trim());
+        coreDataBean.setTimeUp8(tvTimeUp8.getText().toString().trim());
+        coreDataBean.setTimeUp9(tvTimeUp9.getText().toString().trim());
+
+            Gson gson = new Gson();
+            content = gson.toJson(coreDataBean);
+
+        map.put("coreDate",content);
         return map;
     }
 

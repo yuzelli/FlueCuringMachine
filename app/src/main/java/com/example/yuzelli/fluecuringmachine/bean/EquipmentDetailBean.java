@@ -454,7 +454,7 @@ public class EquipmentDetailBean implements Serializable {
     public static class CoreDataBean implements Serializable {
         private long coredataId;
         private int coreType;
-        private Object creatTime;
+        private long creatTime;
         private String wetSet1;
         private String wetSet2;
         private String wetSet3;
@@ -511,11 +511,11 @@ public class EquipmentDetailBean implements Serializable {
             this.coreType = coreType;
         }
 
-        public Object getCreatTime() {
+        public long getCreatTime() {
             return creatTime;
         }
 
-        public void setCreatTime(Object creatTime) {
+        public void setCreatTime(long creatTime) {
             this.creatTime = creatTime;
         }
 
