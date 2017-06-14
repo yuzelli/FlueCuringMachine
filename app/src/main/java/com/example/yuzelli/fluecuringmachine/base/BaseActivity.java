@@ -58,8 +58,14 @@ public abstract class BaseActivity extends FragmentActivity {
 
     public String getToken(){
         UserInfoBean userInfoBean = (UserInfoBean) SharePreferencesUtil.readObject(this, ConstantsUtils.USER_LOGIN_INFO);
-      //  String token = userInfoBean.getToken();
-         return "ssssssssss";
+        if (userInfoBean==null){
+            return "no token";
+        }
+        String token = userInfoBean.getToken();
+        if (token==null||token.equals("")){
+            return "no token";
+        }
+        return token;
     }
     @Override
     protected void onResume() {

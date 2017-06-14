@@ -41,8 +41,15 @@ public abstract class BaseFragment extends Fragment{
     protected abstract int layoutInit();
     public String getToken(){
         UserInfoBean userInfoBean = (UserInfoBean) SharePreferencesUtil.readObject(getActivity(), ConstantsUtils.USER_LOGIN_INFO);
-//        String token = userInfoBean.getToken();
-        return "ssssssssss";
+        if (userInfoBean==null){
+            return "no token";
+        }
+        String token = userInfoBean.getToken();
+        if (token==null||token.equals("")){
+            return "no token";
+        }
+        return token;
+
     }
     /**
      * 绑定事件

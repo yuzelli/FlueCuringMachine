@@ -77,7 +77,7 @@ public class ChangePassActivity extends BaseActivity {
                 }
 
 
-                OkHttpClientManager.getInstance().postAsync(ConstantsUtils.ADDRESS_URL + ConstantsUtils.CHANG_USER_PASS_POST, UserInfoBean.getLogin(userInfo.getUserName(), passWord), new OkHttpClientManager.DataCallBack() {
+                OkHttpClientManager.getInstance().postAsync(ConstantsUtils.ADDRESS_URL + ConstantsUtils.CHANG_USER_PASS_POST, UserInfoBean.getChange(userInfo.getUserName(), passWord,getToken()), new OkHttpClientManager.DataCallBack() {
                     @Override
                     public void requestFailure(Request request, IOException e) {
                         showToast("请求数据失败！");
@@ -89,11 +89,8 @@ public class ChangePassActivity extends BaseActivity {
                         JSONObject object = new JSONObject(result);
                         int code = object.optInt("errorCode");
                         switch (code) {
-                            case 10010:
+                            case 0:
                                 handler.sendEmptyMessage(ConstantsUtils.CHANGE_PASS);
-                                break;
-                            case 10011:
-                                showToast("登陆失败！");
                                 break;
                             case 10001:
                                 showToast("参数错误！");

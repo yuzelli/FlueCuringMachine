@@ -123,7 +123,7 @@ public class EquipmentDetailActivity extends BaseActivity {
 
     private void doGetEquimentDetailData(String eq_sn) {
         StringBuffer url = new StringBuffer(ConstantsUtils.ADDRESS_URL).append(ConstantsUtils.EQUIPMENT_DETAIL);
-        url.append(eq_sn + "/").append("detail");
+        url.append(eq_sn + "/").append("detail").append("/"+getToken());
         OkHttpClientManager.getInstance().getAsync(url.toString(), new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {
@@ -201,6 +201,24 @@ public class EquipmentDetailActivity extends BaseActivity {
             tvUpwetTemperature.setText(equiDetail.getSystemData().getDownwetTemperature());
             tvUpdryTemperature.setText(equiDetail.getSystemData().getDowndryTemperature());
         }
+        SetSystem(systemStatus);
+
+        tvVoltage.setText(equiDetail.getSystemData().getVoltage());
+        tvNum.setText("第" + NumTrans.input((equiDetail.getSystemData().getTimes() + 1) + "") + "轮");
+
+        doShowWarning();
+    }
+
+    /**
+     * 设置烘烤位置
+     * @param systemStatus
+     */
+    private void SetSystem(String systemStatus) {
+        if (systemStatus.length()==2){
+            tvBaking.setText("未设置");
+            tvWaterContent.setText("未设置");
+            return;
+        }
         int bakingStatus = Integer.valueOf(systemStatus.substring(2, 3));
         switch (bakingStatus) {
             case 1:
@@ -224,7 +242,10 @@ public class EquipmentDetailActivity extends BaseActivity {
             default:
                 break;
         }
-
+        if (systemStatus.length()==3){
+            tvWaterContent.setText("未设置");
+            return;
+        }
         int watercontentStatus = Integer.valueOf(systemStatus.substring(3, 4));
         switch (watercontentStatus) {
             case 1:
@@ -239,27 +260,23 @@ public class EquipmentDetailActivity extends BaseActivity {
             default:
                 break;
         }
-        tvVoltage.setText(equiDetail.getSystemData().getVoltage());
-        tvNum.setText("第" + NumTrans.input((equiDetail.getSystemData().getTimes() + 1) + "") + "轮");
-
-        doShowWarning();
     }
 
     /**
      * 判断警告信息
      */
     private void doShowWarning() {
-         if (equiDetail.getSystemData().getGo()!=1){
-             showWarning("设备未连接\n可能关机或者停电");
-         }
-        String voltage = equiDetail.getSystemData().getVoltage();
-        voltage = voltage.substring(0,voltage.length()-1);
-        int volValue  = Integer.getInteger(voltage);
-        if(volValue>260){
-            showWarning("电压超过260V\n检查供电电源");
-        }else if (volValue<165){
-            showWarning("电压低于165V\n检查供电电源");
-        }
+//         if (equiDetail.getSystemData().getGo()!=1){
+//             showWarning("设备未连接\n可能关机或者停电");
+//         }
+//        String voltage = equiDetail.getSystemData().getVoltage();
+//        voltage = voltage.substring(0,voltage.length()-1);
+//        int volValue  = Integer.valueOf(voltage);
+//        if(volValue>260){
+//            showWarning("电压超过260V\n检查供电电源");
+//        }else if (volValue<165){
+//            showWarning("电压低于165V\n检查供电电源");
+//        }
 //        if ()
     }
 
@@ -288,7 +305,7 @@ public class EquipmentDetailActivity extends BaseActivity {
                 if (password.equals(userInfo.getPassWords())) {
                     dialog.dismiss();
                     if (where.equals("1")){
-                        ShowTempActivity.actionStart(context, equiDetail.getCoreData());
+                        ShowTempActivity.actionStart(context, equiDetail.getCoreData(),equiDetail.getDevice().getDeviceId()+"");
                     }
                     if (where.equals("2")){
 

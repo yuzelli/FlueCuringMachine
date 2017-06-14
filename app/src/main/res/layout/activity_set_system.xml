@@ -7,4 +7,79 @@
     tools:context="com.example.yuzelli.fluecuringmachine.view.activity.SetSystemActivity">
     <include layout="@layout/include_head"
         android:id="@+id/include_head"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/include_head">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/color_title_bg"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="设置烘烤位置："/>
+                <TextView
+                    android:id="@+id/tv_weizhi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:text="ss"/>
+            </RelativeLayout>
+            <com.example.yuzelli.fluecuringmachine.utils.ListViewForScrollViewUtil
+                android:id="@+id/lv_weizhi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.example.yuzelli.fluecuringmachine.utils.ListViewForScrollViewUtil>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/color_title_bg"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="设置烘烤位置："/>
+                <TextView
+                    android:id="@+id/tv_shuifeng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:text="ss"/>
+            </RelativeLayout>
+            <com.example.yuzelli.fluecuringmachine.utils.ListViewForScrollViewUtil
+                android:id="@+id/lv_shuifeng"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.example.yuzelli.fluecuringmachine.utils.ListViewForScrollViewUtil>
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </RelativeLayout>

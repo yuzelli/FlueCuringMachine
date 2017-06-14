@@ -51,4 +51,12 @@ public class UserInfoBean implements Serializable {
         return map;
 
     }
+    public static Map<String,String> getChange(String userName, String password,String token){
+        Map<String,String> map = new HashMap<>();
+        map.put("username",userName);
+        map.put("password",password);
+        map.put("token",token);
+        return map;
+
+    }
 }

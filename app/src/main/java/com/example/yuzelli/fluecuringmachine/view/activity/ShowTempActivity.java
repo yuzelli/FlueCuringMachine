@@ -129,6 +129,7 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
 
 
     private EquipmentDetailBean.CoreDataBean coredata;
+    private String deviceId;
     private ArrayList<Boolean> settingFlags;
 
     @Override
@@ -139,6 +140,7 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void binEvent() {
         coredata = (EquipmentDetailBean.CoreDataBean) getIntent().getSerializableExtra("coredata");
+        deviceId =  getIntent().getStringExtra("deviceId");
         tvTitle.setText("当前设备详情");
         tvAction.setVisibility(View.VISIBLE);
         tvAction.setText("去设置");
@@ -205,9 +207,10 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
 
     }
 
-    public static void actionStart(Context context, EquipmentDetailBean.CoreDataBean coredata) {
+    public static void actionStart(Context context, EquipmentDetailBean.CoreDataBean coredata,String deviceId) {
         Intent intent = new Intent(context, ShowTempActivity.class);
         intent.putExtra("coredata", coredata);
+        intent.putExtra("deviceId", deviceId);
         context.startActivity(intent);
 
     }
@@ -242,7 +245,7 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
                 showSettingDialog(tvWetSet4,4);
                 break;
             case R.id.tv_wetSet5:
-                showSettingDialog(tvWetSet5,6);
+                showSettingDialog(tvWetSet5,5);
                 break;
             case R.id.tv_wetSet6:
                 showSettingDialog(tvWetSet6,6);
@@ -355,7 +358,7 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
      * 上传操作
      */
     private void doPushActionSetting() {
-        OkHttpClientManager.getInstance().postAsync(ConstantsUtils.ADDRESS_URL + ConstantsUtils.SET_TEMP_POST,setMap(), new OkHttpClientManager.DataCallBack() {
+        OkHttpClientManager.getInstance().postAsync(ConstantsUtils.ADDRESS_URL + ConstantsUtils.SET_TEMP_POST+deviceId+"/ececute",setMap(), new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {
                 showToast("请求数据失败！");
@@ -454,8 +457,9 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
 
         final Dialog dialog = new Dialog(this, R.style.PhotoDialog2);
         View view = LayoutInflater.from(ShowTempActivity.this).inflate(R.layout.setting_temp_or_time_dialog, null);
-        EditText et_input = (EditText) view.findViewById(R.id.et_input);
+        final EditText et_input = (EditText) view.findViewById(R.id.et_input);
         dialog.setContentView(view);
+        et_input.setText(tv.getText().toString().trim());
 
         final TextView tv_cancel = (TextView) view.findViewById(R.id.tv_cancel);
         TextView tv_ok = (TextView) view.findViewById(R.id.tv_ok);
@@ -469,7 +473,7 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
         tv_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String input = tv_cancel.getText().toString().trim();
+                String input = et_input.getText().toString().trim();
                 if (input.equals("")){
                     showToast("请输入！");
                     return;
@@ -478,6 +482,7 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
                 tv.setTextColor(Color.BLACK);
                 int index = postion;
                 settingFlags.set(index-1,Boolean.TRUE);
+                dialog.dismiss();
             }
         });
         Window dialogWindow = dialog.getWindow();
