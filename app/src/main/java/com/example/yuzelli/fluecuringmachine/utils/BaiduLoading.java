@@ -158,7 +158,7 @@ public class BaiduLoading extends View {
         }
         mContext = context;
 
-        if (dialog != null && !dialog.isShowing()) {
+        if (dialog == null || !dialog.isShowing()) {
             dialog = new Dialog(context, R.style.PhotoDialog);
             final View view = LayoutInflater.from(context).inflate(R.layout.view_loading, null);
             dialog.setContentView(view);
@@ -168,7 +168,7 @@ public class BaiduLoading extends View {
 
     public static void onStopDialog() {
         if (creatNum==0) {
-            if (dialog!=null&&dialog.isShowing()){
+            if (dialog!=null||dialog.isShowing()){
                 dialog.dismiss();
                 mContext = null;
             }

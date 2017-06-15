@@ -14,6 +14,7 @@ import com.example.yuzelli.fluecuringmachine.base.BaseActivity;
 import com.example.yuzelli.fluecuringmachine.bean.UserInfoBean;
 import com.example.yuzelli.fluecuringmachine.constants.ConstantsUtils;
 import com.example.yuzelli.fluecuringmachine.https.OkHttpClientManager;
+import com.example.yuzelli.fluecuringmachine.utils.BaiduLoading;
 
 import org.json.JSONObject;
 
@@ -38,7 +39,6 @@ public class RegisterActivity extends BaseActivity {
     EditText etPassword;
     @BindView(R.id.et_okpassword)
     EditText etOkpassword;
-
     @OnClick(R.id.tv_register)
     public void tvRegister() {
         String userName = etUsername.getText().toString().trim();
@@ -47,26 +47,31 @@ public class RegisterActivity extends BaseActivity {
 
         if (userName.equals("")) {
             showToast("用户名不能为空！");
+            return;
         }
         if (passWorid.equals("")) {
             showToast("密码不能为空！");
+            return;
         }
         if (okPassword.equals("")) {
             showToast("确认密码不能为空");
+            return;
         }
         if (!passWorid.equals(okPassword)) {
             showToast("两次密码输入不一致！");
+            return;
         }
-
+        BaiduLoading.onBeiginDialog(context);
         OkHttpClientManager.getInstance().postAsync(ConstantsUtils.ADDRESS_URL + ConstantsUtils.REGISTER_POST, UserInfoBean.getChange(userName, passWorid,getToken()), new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {
+                BaiduLoading.onStopDialog();
                 showToast("请求数据失败！");
             }
 
             @Override
             public void requestSuccess(String result) throws Exception {
-
+                BaiduLoading.onStopDialog();
                 JSONObject object = new JSONObject(result);
                 int code = object.optInt("errorCode");
                 switch (code){
@@ -93,7 +98,7 @@ public class RegisterActivity extends BaseActivity {
             }
         });
     }
-
+private Context context;
     @Override
     protected int layoutInit() {
         return R.layout.activity_register;
@@ -101,7 +106,7 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     protected void binEvent() {
-
+context = this;
     }
 
     @Override

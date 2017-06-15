@@ -15,6 +15,7 @@ import com.example.yuzelli.fluecuringmachine.base.BaseActivity;
 import com.example.yuzelli.fluecuringmachine.bean.UserInfoBean;
 import com.example.yuzelli.fluecuringmachine.constants.ConstantsUtils;
 import com.example.yuzelli.fluecuringmachine.https.OkHttpClientManager;
+import com.example.yuzelli.fluecuringmachine.utils.BaiduLoading;
 import com.example.yuzelli.fluecuringmachine.utils.CommonAdapter;
 import com.example.yuzelli.fluecuringmachine.utils.ListViewForScrollViewUtil;
 import com.example.yuzelli.fluecuringmachine.utils.ViewHolder;
@@ -66,6 +67,7 @@ public class SetSystemActivity extends BaseActivity {
 
     @Override
     protected void binEvent() {
+        context = this;
         tvAction.setVisibility(View.VISIBLE);
         tvAction.setText("设置完成");
         handler = new SetSystemHandler();
@@ -123,16 +125,20 @@ public class SetSystemActivity extends BaseActivity {
     /**
      * 设置网络请求
      */
+    private Context context;
     private void doSetSystemAction() {
+
+        BaiduLoading.onBeiginDialog(context);
         OkHttpClientManager.getInstance().postAsync(ConstantsUtils.ADDRESS_URL + ConstantsUtils.SET_SYSTEM_POST+deviceID+"/change", getMap(), new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {
+                BaiduLoading.onStopDialog();
                 showToast("请求数据失败！");
             }
 
             @Override
             public void requestSuccess(String result) throws Exception {
-
+                BaiduLoading.onStopDialog();
                 JSONObject object = new JSONObject(result);
                 int code = object.optInt("errorCode");
                 switch (code) {

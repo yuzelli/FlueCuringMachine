@@ -6,14 +6,17 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.yuzelli.fluecuringmachine.R;
 import com.example.yuzelli.fluecuringmachine.base.BaseActivity;
 import com.example.yuzelli.fluecuringmachine.bean.UserInfoBean;
 import com.example.yuzelli.fluecuringmachine.constants.ConstantsUtils;
 import com.example.yuzelli.fluecuringmachine.https.OkHttpClientManager;
+import com.example.yuzelli.fluecuringmachine.utils.BaiduLoading;
 import com.example.yuzelli.fluecuringmachine.utils.SharePreferencesUtil;
 import com.example.yuzelli.fluecuringmachine.widgets.RoundImageView;
 
@@ -46,16 +49,17 @@ public class LoginActivity extends BaseActivity {
         if (password.equals("")) {
             showToast("请输入用户名！");
         }
-
+        BaiduLoading.onBeiginDialog(context);
         OkHttpClientManager.getInstance().postAsync(ConstantsUtils.ADDRESS_URL + ConstantsUtils.USERINFO_LOGIN, UserInfoBean.getLogin(userName, password), new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {
+                BaiduLoading.onStopDialog();
                 showToast("请求数据失败！");
             }
 
             @Override
             public void requestSuccess(String result) throws Exception {
-
+                BaiduLoading.onStopDialog();
                 JSONObject object = new JSONObject(result);
                 int code = object.optInt("errorCode");
                 switch (code) {
@@ -124,6 +128,7 @@ public class LoginActivity extends BaseActivity {
                     SharePreferencesUtil.saveObject(context, ConstantsUtils.USER_LOGIN_INFO, userInfo);
                     userInfo = (UserInfoBean) SharePreferencesUtil.readObject(context, ConstantsUtils.USER_LOGIN_INFO);
                     if (userInfo != null) {
+                        MainActivity.actionStart(context);
                         finish();
                     }else {
                         showToast("保存用户信息失败！请重新登陆！");
@@ -134,5 +139,19 @@ public class LoginActivity extends BaseActivity {
             }
         }
     }
-
+    long exitTime = 0;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+               // finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

@@ -18,6 +18,7 @@ import com.example.yuzelli.fluecuringmachine.bean.EquipmentDetailBean;
 import com.example.yuzelli.fluecuringmachine.bean.UserInfoBean;
 import com.example.yuzelli.fluecuringmachine.constants.ConstantsUtils;
 import com.example.yuzelli.fluecuringmachine.https.OkHttpClientManager;
+import com.example.yuzelli.fluecuringmachine.utils.BaiduLoading;
 import com.example.yuzelli.fluecuringmachine.utils.SharePreferencesUtil;
 
 import org.json.JSONObject;
@@ -65,9 +66,10 @@ public class SetSytemParametersActivity extends BaseActivity {
     protected int layoutInit() {
         return R.layout.activity_set_sytem_parameters;
     }
-
+     private Context context;
     @Override
     protected void binEvent() {
+        context = this;
         equipmentDetai = (EquipmentDetailBean) getIntent().getSerializableExtra("equipmentDetai");
         handler = new SSPHandler();
         tvAction.setVisibility(View.VISIBLE);
@@ -131,15 +133,17 @@ public class SetSytemParametersActivity extends BaseActivity {
         tvAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                BaiduLoading.onBeiginDialog(context);
                 OkHttpClientManager.getInstance().postAsync(ConstantsUtils.ADDRESS_URL + ConstantsUtils.SET_TEMP_POST + equipmentDetai.getDevice().getDeviceId() + "/system", getMap(), new OkHttpClientManager.DataCallBack() {
                     @Override
                     public void requestFailure(Request request, IOException e) {
                         showToast("请求数据失败！");
+                        BaiduLoading.onStopDialog();
                     }
 
                     @Override
                     public void requestSuccess(String result) throws Exception {
-
+                        BaiduLoading.onStopDialog();
                         JSONObject object = new JSONObject(result);
                         int code = object.optInt("errorCode");
                         switch (code) {

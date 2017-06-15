@@ -15,6 +15,7 @@ import com.example.yuzelli.fluecuringmachine.base.BaseActivity;
 import com.example.yuzelli.fluecuringmachine.bean.UserInfoBean;
 import com.example.yuzelli.fluecuringmachine.constants.ConstantsUtils;
 import com.example.yuzelli.fluecuringmachine.https.OkHttpClientManager;
+import com.example.yuzelli.fluecuringmachine.utils.BaiduLoading;
 import com.example.yuzelli.fluecuringmachine.utils.SharePreferencesUtil;
 
 import org.json.JSONObject;
@@ -76,16 +77,17 @@ public class ChangePassActivity extends BaseActivity {
                     showToast("两次密码输入不一致！");
                 }
 
-
+                BaiduLoading.onBeiginDialog(context);
                 OkHttpClientManager.getInstance().postAsync(ConstantsUtils.ADDRESS_URL + ConstantsUtils.CHANG_USER_PASS_POST, UserInfoBean.getChange(userInfo.getUserName(), passWord,getToken()), new OkHttpClientManager.DataCallBack() {
                     @Override
                     public void requestFailure(Request request, IOException e) {
+                        BaiduLoading.onStopDialog();
                         showToast("请求数据失败！");
                     }
 
                     @Override
                     public void requestSuccess(String result) throws Exception {
-
+                        BaiduLoading.onStopDialog();
                         JSONObject object = new JSONObject(result);
                         int code = object.optInt("errorCode");
                         switch (code) {

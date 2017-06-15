@@ -44,11 +44,14 @@ public class MainActivity extends BaseActivity {
     protected void binEvent() {
         //oncreate方法中的回调
 
-        initView();
         UserInfoBean userInfo = (UserInfoBean) SharePreferencesUtil.readObject(this, ConstantsUtils.USER_LOGIN_INFO);
         if (userInfo==null){
             LoginActivity.actionStart(this);
+            finish();
         }
+
+        initView();
+
     }
 
     @Override

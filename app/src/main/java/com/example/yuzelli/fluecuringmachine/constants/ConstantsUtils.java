@@ -14,6 +14,7 @@ public class ConstantsUtils {
     public static final int CHANGE_PASS = 0x00001005;
     public static final int SET_SYSTEM = 0x00001006;
     public static final int SET_SYSTEM_SSP = 0x00001007;
+    public static final int SET_TEMP_POSS= 0x00001008;
 
     public static final String ADDRESS_URL = "http://60.205.214.66:8080/emanager/rest/";
     public static final String USERINFO_LOGIN = "devicemanage/login/";

@@ -23,8 +23,7 @@
         </activity>
         >
         <activity
-            android:name=".view.activity.LoginActivity"
-            android:launchMode="singleTask" />
+            android:name=".view.activity.LoginActivity" />
         <activity android:name=".view.activity.RegisterActivity" />
         <activity android:name=".view.activity.EquipmentDetailActivity" />
         <activity android:name=".view.activity.ChangePassActivity" />

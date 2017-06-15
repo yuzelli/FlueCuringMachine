@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,6 +25,7 @@ import com.example.yuzelli.fluecuringmachine.bean.EquipmentDetailBean;
 import com.example.yuzelli.fluecuringmachine.bean.UserInfoBean;
 import com.example.yuzelli.fluecuringmachine.constants.ConstantsUtils;
 import com.example.yuzelli.fluecuringmachine.https.OkHttpClientManager;
+import com.example.yuzelli.fluecuringmachine.utils.BaiduLoading;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
@@ -37,7 +40,12 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class ShowTempActivity extends BaseActivity implements View.OnClickListener {
 
@@ -133,6 +141,7 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
     private EquipmentDetailBean.CoreDataBean coredata;
     private String deviceId;
     private ArrayList<Boolean> settingFlags;
+    private STHandler handler;
 
     @Override
     protected int layoutInit() {
@@ -141,10 +150,12 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void binEvent() {
+        context = this;
         coredata = (EquipmentDetailBean.CoreDataBean) getIntent().getSerializableExtra("coredata");
         deviceId =  getIntent().getStringExtra("deviceId");
         findViewById(R.id.rl_black).setVisibility(View.VISIBLE);
         tvTitle.setText("当前设备详情");
+        handler = new STHandler();
         tvAction.setVisibility(View.VISIBLE);
         tvAction.setText("去设置");
         tvDrySet1.setText(coredata.getDrySet1());
@@ -218,7 +229,7 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
 
     }
 
-
+private Context context;
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -226,13 +237,19 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
                 if (tvAction.getText().toString().trim().equals("去设置")) {
                     doBeginSetAction();
                 } else if (tvAction.getText().toString().trim().equals("设置完成")) {
-//                    for (Boolean b : settingFlags){
-//                        if (b.booleanValue()==false){
-//                            showToast("请全部设置完成后在上传！");
-//                            return;
-//                        }
-//                    }
-                    doPushActionSetting();
+                    for (Boolean b : settingFlags){
+                        if (b.booleanValue()==false){
+                            showToast("请全部设置完成后在上传！");
+                            return;
+                        }
+                    }
+                    BaiduLoading.onBeiginDialog(context);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            doPushActionSetting2();
+                        }
+                    }).start();
                 }
                 break;
             case R.id.tv_wetSet1:
@@ -357,55 +374,61 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
-    /**
-     * 上传操作
-     */
-    private void doPushActionSetting() {
-        OkHttpClientManager.getInstance().postAsync(ConstantsUtils.ADDRESS_URL + ConstantsUtils.SET_TEMP_POST+deviceId+"/ececute",setMap(), new OkHttpClientManager.DataCallBack() {
-            @Override
-            public void requestFailure(Request request, IOException e) {
-                showToast("请求数据失败！");
-            }
+    public static final MediaType JSON=MediaType.parse("application/json; charset=utf-8");
 
-            @Override
-            public void requestSuccess(String result) throws Exception {
+    private void doPushActionSetting2(){
 
-                JSONObject object = new JSONObject(result);
-                int code = object.optInt("errorCode");
-                switch (code) {
-                    case 0:
-                        finish();
-                        showToast("修改成功！");
-                        break;
-                    case 10001:
-                        showToast("参数错误！");
-                        break;
-                    case 10002:
-                        showToast("没有权限！");
-                        break;
-                    default:
-                        break;
+            //申明给服务端传递一个json串
+            //创建一个OkHttpClient对象
+            OkHttpClient okHttpClient = new OkHttpClient();
+            //创建一个RequestBody(参数1：数据类型 参数2传递的json串)
+            FormBody.Builder builder = new FormBody.Builder();
+            builder.add("token",getToken());
+            builder.add("coreData",getJson());
+            RequestBody requestBody = null;
+        //创建一个请求对象
+        requestBody = builder.build();
+            Request request = new Request.Builder()
+                    .url(ConstantsUtils.ADDRESS_URL + ConstantsUtils.SET_TEMP_POST+deviceId+"/ececute")
+                    .post(requestBody)
+                    .build();
+            //发送请求获取响应
+
+            try {
+                Response response=okHttpClient.newCall(request).execute();
+                //判断请求是否成功
+                if(response.isSuccessful()){
+                    BaiduLoading.onStopDialog();
+                    //打印服务端返回结果
+                   String result = response.body().string();
+                    try {
+                        JSONObject jsonObject = new JSONObject(result);
+                        int errorCode = jsonObject.optInt("errorCode");
+                        if (errorCode==0){
+                            handler.sendEmptyMessage(ConstantsUtils.SET_TEMP_POSS);
+                        }else {
+                            showToast("设置数据失败!");
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    Log.d("-->",result);
+                }else {
+                    BaiduLoading.onStopDialog();
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        });
-
 
     }
 
-    /**
-     * 设置参数
-     * @return
-     */
-    private Map<String,String> setMap() {
-        Map<String ,String> map = new HashMap<>();
-        map.put("token",getToken());
-        String content = null;
+    private String getJson() {
+
         JSONObject json = new JSONObject();
         try {
-            json.put("coredataId",deviceId+"");
-
-        json.put("coreType",1+"");
-            json.put("creatTime",System.currentTimeMillis()+"");
+            json.put("coredataId",Long.valueOf(deviceId));
+            json.put("coreType",coredata.getCoreType());
+            json.put("creatTime",System.currentTimeMillis());
             json.put("wetSet1",tvWetSet1.getText().toString().trim());
             json.put("wetSet2",tvWetSet2.getText().toString().trim());
             json.put("wetSet3",tvWetSet3.getText().toString().trim());
@@ -445,61 +468,12 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
             json.put("timeUp7",tvTimeUp7.getText().toString().trim());
             json.put("timeUp8",tvTimeUp8.getText().toString().trim());
             json.put("timeUp9",tvTimeUp9.getText().toString().trim());
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
-//          EquipmentDetailBean.CoreDataBean coreDataBean = new EquipmentDetailBean.CoreDataBean();
-//        coreDataBean.setCoredataId(Long.valueOf(deviceId));
-//        coreDataBean.setCoreType(1);
-//        coreDataBean.setCreatTime(System.currentTimeMillis());
-//        coreDataBean.setWetSet1(tvWetSet1.getText().toString().trim());
-//        coreDataBean.setWetSet2(tvWetSet2.getText().toString().trim());
-//        coreDataBean.setWetSet3(tvWetSet3.getText().toString().trim());
-//        coreDataBean.setWetSet4(tvWetSet4.getText().toString().trim());
-//        coreDataBean.setWetSet5(tvWetSet5.getText().toString().trim());
-//        coreDataBean.setWetSet6(tvWetSet6.getText().toString().trim());
-//        coreDataBean.setWetSet7(tvWetSet7.getText().toString().trim());
-//        coreDataBean.setWetSet8(tvWetSet8.getText().toString().trim());
-//        coreDataBean.setWetSet9(tvWetSet9.getText().toString().trim());
-//        coreDataBean.setWetSet10(tvWetSet10.getText().toString().trim());
-//
-//        coreDataBean.setDrySet1(tvDrySet1.getText().toString().trim());
-//        coreDataBean.setDrySet2(tvDrySet2.getText().toString().trim());
-//        coreDataBean.setDrySet3(tvDrySet3.getText().toString().trim());
-//        coreDataBean.setDrySet4(tvDrySet4.getText().toString().trim());
-//        coreDataBean.setDrySet5(tvDrySet5.getText().toString().trim());
-//        coreDataBean.setDrySet6(tvDrySet6.getText().toString().trim());
-//        coreDataBean.setDrySet7(tvDrySet7.getText().toString().trim());
-//        coreDataBean.setDrySet8(tvDrySet8.getText().toString().trim());
-//        coreDataBean.setDrySet9(tvDrySet9.getText().toString().trim());
-//        coreDataBean.setDrySet10(tvDrySet10.getText().toString().trim());
-//
-//        coreDataBean.setTimeSet1(tvTimeSet1.getText().toString().trim());
-//        coreDataBean.setTimeSet2(tvTimeSet2.getText().toString().trim());
-//        coreDataBean.setTimeSet3(tvTimeSet3.getText().toString().trim());
-//        coreDataBean.setTimeSet4(tvTimeSet4.getText().toString().trim());
-//        coreDataBean.setTimeSet5(tvTimeSet5.getText().toString().trim());
-//        coreDataBean.setTimeSet6(tvTimeSet6.getText().toString().trim());
-//        coreDataBean.setTimeSet7(tvTimeSet7.getText().toString().trim());
-//        coreDataBean.setTimeSet8(tvTimeSet8.getText().toString().trim());
-//        coreDataBean.setTimeSet9(tvTimeSet9.getText().toString().trim());
-//        coreDataBean.setTimeSet10(tvTimeSet10.getText().toString().trim());
-//
-//        coreDataBean.setTimeUp1(tvTimeUp1.getText().toString().trim());
-//        coreDataBean.setTimeUp2(tvTimeUp2.getText().toString().trim());
-//        coreDataBean.setTimeUp3(tvTimeUp3.getText().toString().trim());
-//        coreDataBean.setTimeUp4(tvTimeUp4.getText().toString().trim());
-//        coreDataBean.setTimeUp5(tvTimeUp5.getText().toString().trim());
-//        coreDataBean.setTimeUp6(tvTimeUp6.getText().toString().trim());
-//        coreDataBean.setTimeUp7(tvTimeUp7.getText().toString().trim());
-//        coreDataBean.setTimeUp8(tvTimeUp8.getText().toString().trim());
-//        coreDataBean.setTimeUp9(tvTimeUp9.getText().toString().trim());
-//
-            Gson gson = new Gson();
-//            content = gson.toJson(coreDataBean);
-
-        map.put("coreDate",gson.toJson(json));
-        return map;
+        Gson gson = new Gson();
+        return json.toString();
     }
 
     /**
@@ -640,44 +614,20 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
         tvTimeUp8.setOnClickListener(this);
         tvTimeUp9.setOnClickListener(this);
     }
+
+    class STHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case ConstantsUtils.SET_TEMP_POSS:
+                    showToast("成功修改参数！");
+                    finish();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
 }
-//              tvWetSet1
-//              tvWetSet2
-//              tvWetSet3
-//              tvWetSet4
-//              tvWetSet5
-//              tvWetSet6
-//              tvWetSet7
-//              tvWetSet8
-//              tvWetSet9
-//              tvWetSet10
-//              tvDrySet1
-//              tvDrySet2
-//              tvDrySet3
-//              tvDrySet4
-//              tvDrySet5
-//              tvDrySet6
-//              tvDrySet7
-//           tvDrySet8
-//          tvDrySet9
-//             tvDrySet10
-//
-//              tvTimeSet1
-//              tvTimeSet2
-//              tvTimeSet3
-//              tvTimeSet4.
-//              tvTimeSet5.
-//              tvTimeSet6.
-//              tvTimeSet7.
-//              tvTimeSet8.
-//              tvTimeSet9.
-//              tvTimeSet10.
-//              tvTimeUp1.
-//              tvTimeUp2.
-//              tvTimeUp3.
-//              tvTimeUp4.
-//              tvTimeUp5.
-//              tvTimeUp6.
-//              tvTimeUp7.
-//              tvTimeUp8.
-//              tvTimeUp9.

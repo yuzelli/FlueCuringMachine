@@ -3,6 +3,8 @@ package com.example.yuzelli.fluecuringmachine.https;
 import android.os.Handler;
 import android.os.Looper;
 
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -299,6 +301,8 @@ public class OkHttpClientManager {
              * 把key和value添加到formbody中
              */
             builder.add(key, value);
+
+
         }
         requestBody = builder.build();
         //结果返回

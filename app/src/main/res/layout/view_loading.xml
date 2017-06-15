@@ -5,7 +5,7 @@
     android:background="@color/transparent"
     >
 
-    <com.vpubaoharmay.utils.BaiduLoading
+    <com.example.yuzelli.fluecuringmachine.utils.BaiduLoading
         android:id="@+id/loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

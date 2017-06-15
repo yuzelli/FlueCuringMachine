@@ -21,6 +21,7 @@ import com.example.yuzelli.fluecuringmachine.bean.EquipmentListBean;
 import com.example.yuzelli.fluecuringmachine.bean.UserInfoBean;
 import com.example.yuzelli.fluecuringmachine.constants.ConstantsUtils;
 import com.example.yuzelli.fluecuringmachine.https.OkHttpClientManager;
+import com.example.yuzelli.fluecuringmachine.utils.BaiduLoading;
 import com.example.yuzelli.fluecuringmachine.utils.CommonAdapter;
 import com.example.yuzelli.fluecuringmachine.utils.GsonUtils;
 import com.example.yuzelli.fluecuringmachine.utils.SharePreferencesUtil;
@@ -76,13 +77,14 @@ public class YanInfoFragment extends BaseFragment {
 
     //   获取设备列表
     private void doGetEquipmentList() {
-
+        BaiduLoading.onBeiginDialog(getActivity());
         StringBuffer url = new StringBuffer(ConstantsUtils.ADDRESS_URL).append(ConstantsUtils.EQUIPMENT_LIST);
         url.append(pageNo + "/").append(pageSize).append("/"+"page").append("/"+getToken());
 
         OkHttpClientManager.getInstance().getAsync(url.toString(), new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {
+                BaiduLoading.onStopDialog();
                 lvEquipmentList.onRefreshComplete();
                 showToast("加载网路数据失败！");
             }
@@ -91,7 +93,7 @@ public class YanInfoFragment extends BaseFragment {
             public void requestSuccess(String result) throws Exception {
                 Log.d("--doGetEquipmentList-->", result);
                 lvEquipmentList.onRefreshComplete();
-
+                BaiduLoading.onStopDialog();
                 JSONObject json = new JSONObject(result);
                 int errorCode = json.optInt("errorCode");
                 if (errorCode == 0) {

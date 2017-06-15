@@ -23,6 +23,7 @@ import com.example.yuzelli.fluecuringmachine.bean.EquipmentDetailBean;
 import com.example.yuzelli.fluecuringmachine.bean.UserInfoBean;
 import com.example.yuzelli.fluecuringmachine.constants.ConstantsUtils;
 import com.example.yuzelli.fluecuringmachine.https.OkHttpClientManager;
+import com.example.yuzelli.fluecuringmachine.utils.BaiduLoading;
 import com.example.yuzelli.fluecuringmachine.utils.NumTrans;
 import com.example.yuzelli.fluecuringmachine.utils.SharePreferencesUtil;
 import com.google.gson.Gson;
@@ -124,18 +125,20 @@ public class EquipmentDetailActivity extends BaseActivity {
     }
 
     private void doGetEquimentDetailData(String eq_sn) {
+        BaiduLoading.onBeiginDialog(context);
         StringBuffer url = new StringBuffer(ConstantsUtils.ADDRESS_URL).append(ConstantsUtils.EQUIPMENT_DETAIL);
         url.append(eq_sn + "/").append("detail").append("/" + getToken());
         OkHttpClientManager.getInstance().getAsync(url.toString(), new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {
-
+           BaiduLoading.onStopDialog();
                 showToast("加载网路数据失败！");
             }
 
             @Override
             public void requestSuccess(String result) throws Exception {
                 Log.d("--doGetDetailData-->", result);
+                BaiduLoading.onStopDialog();
                 JSONObject json = new JSONObject(result);
                 int errorCode = json.optInt("errorCode");
                 if (errorCode == 0) {
