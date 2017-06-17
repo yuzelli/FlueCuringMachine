@@ -23,26 +23,13 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="200dp">
-                    <TextView
-                        android:id="@+id/tv_shangxiapeng"
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:text="上棚"
-                        android:gravity="center"
-                        android:textColor="@color/black"/>
-                    <View
-                        android:id="@+id/v_line2"
-                        android:layout_width="0.5dp"
-                        android:background="@color/color_line_bg"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="50dp"
-                        />
+
                     <LinearLayout
                         android:id="@+id/ll_title"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:orientation="horizontal"
-                        android:layout_toRightOf="@+id/v_line2">
+                       >
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -90,21 +77,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
                         android:layout_below="@+id/ll_title"
-                        android:layout_toRightOf="@+id/v_line2"
                         android:background="@color/color_line_bg"/>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
-                        android:layout_below="@+id/v_line4"
-                        android:layout_toRightOf="@+id/v_line2">
+                        android:layout_below="@+id/v_line4">
                         <TextView
                             android:id="@+id/tv_updryTemperature"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1.5"
                             android:gravity="center"
-                            android:textSize="30sp"
+                            android:textSize="20sp"
                            />
                         <View
                             android:layout_width="0.5dp"
@@ -116,7 +101,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1.5"
                             android:gravity="center"
-                            android:textSize="30sp"
+                            android:textSize="20sp"
                            />
                         <View
                             android:layout_width="0.5dp"
@@ -156,26 +141,13 @@
                     android:layout_height="100dp"
                     android:layout_below="@+id/v_line1">
 
-                    <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:text="恒温\n目标"
-                        android:gravity="center"
-                        android:textColor="@color/black"
-                        />
-                    <View
-                        android:id="@+id/v_line3"
-                        android:layout_width="0.5dp"
-                        android:background="@color/color_line_bg"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="50dp"
-                    />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
 
-                        android:layout_toRightOf="@+id/v_line3">
+                       >
                         <TextView
                             android:id="@+id/tv_dryTarget"
                             android:layout_width="0dp"

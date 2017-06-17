@@ -39,12 +39,15 @@ import com.example.yuzelli.fluecuringmachine.utils.AssetsCopyTOSDcard;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class InfomationDetailActivity extends BaseActivity {
 
 
-    @BindView(R.id.img_black)
-    ImageView imgBlack;
+    @OnClick(R.id.rl_black)
+    public void imgBlack(){
+        finish();
+    }
     @BindView(R.id.tv_title)
     TextView tvTitle;
     @BindView(R.id.office)
@@ -78,14 +81,8 @@ public class InfomationDetailActivity extends BaseActivity {
 
     @Override
     protected void binEvent() {
-        imgBlack.setVisibility(View.VISIBLE);
+        findViewById(R.id.rl_black).setVisibility(View.VISIBLE);
         activity = this;
-        imgBlack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
         Intent intent = getIntent();
         //WebView加载显示本地html文件
         tvTitle.setText(intent.getStringExtra("title"));

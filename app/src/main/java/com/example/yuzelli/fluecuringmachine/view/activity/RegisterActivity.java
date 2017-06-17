@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,7 +29,7 @@ import okhttp3.Request;
 public class RegisterActivity extends BaseActivity {
 
 
-    @OnClick(R.id.img_black)
+    @OnClick(R.id.rl_black)
     public void imgBlack() {
         finish();
     }
@@ -39,8 +40,10 @@ public class RegisterActivity extends BaseActivity {
     EditText etPassword;
     @BindView(R.id.et_okpassword)
     EditText etOkpassword;
+
     @OnClick(R.id.tv_register)
     public void tvRegister() {
+
         String userName = etUsername.getText().toString().trim();
         String passWorid = etPassword.getText().toString().trim();
         String okPassword = etOkpassword.getText().toString().trim();
@@ -62,7 +65,7 @@ public class RegisterActivity extends BaseActivity {
             return;
         }
         BaiduLoading.onBeiginDialog(context);
-        OkHttpClientManager.getInstance().postAsync(ConstantsUtils.ADDRESS_URL + ConstantsUtils.REGISTER_POST, UserInfoBean.getChange(userName, passWorid,getToken()), new OkHttpClientManager.DataCallBack() {
+        OkHttpClientManager.getInstance().postAsync(ConstantsUtils.ADDRESS_URL + ConstantsUtils.REGISTER_POST, UserInfoBean.getChange(userName, passWorid, getToken()), new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {
                 BaiduLoading.onStopDialog();
@@ -74,14 +77,14 @@ public class RegisterActivity extends BaseActivity {
                 BaiduLoading.onStopDialog();
                 JSONObject object = new JSONObject(result);
                 int code = object.optInt("errorCode");
-                switch (code){
+                switch (code) {
                     case 0:
                         finish();
                         showToast("注册成功！");
                         break;
                     case 10010:
 
-                     //   handler.sendMessage(msg);
+                        //   handler.sendMessage(msg);
                         break;
                     case 10011:
                         showToast("登陆失败！");
@@ -98,7 +101,9 @@ public class RegisterActivity extends BaseActivity {
             }
         });
     }
-private Context context;
+
+    private Context context;
+
     @Override
     protected int layoutInit() {
         return R.layout.activity_register;
@@ -106,7 +111,8 @@ private Context context;
 
     @Override
     protected void binEvent() {
-context = this;
+        context = this;
+        findViewById(R.id.rl_black).setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -119,11 +125,11 @@ context = this;
         context.startActivity(intent);
     }
 
-    class RegisterHandler extends Handler{
+    class RegisterHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case ConstantsUtils.REGISTER_SUCCESS:
 
                     break;

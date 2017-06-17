@@ -237,12 +237,12 @@ private Context context;
                 if (tvAction.getText().toString().trim().equals("去设置")) {
                     doBeginSetAction();
                 } else if (tvAction.getText().toString().trim().equals("设置完成")) {
-                    for (Boolean b : settingFlags){
-                        if (b.booleanValue()==false){
-                            showToast("请全部设置完成后在上传！");
-                            return;
-                        }
-                    }
+//                    for (Boolean b : settingFlags){
+//                        if (b.booleanValue()==false){
+//                            showToast("请全部设置完成后在上传！");
+//                            return;
+//                        }
+//                    }
                     BaiduLoading.onBeiginDialog(context);
                     new Thread(new Runnable() {
                         @Override

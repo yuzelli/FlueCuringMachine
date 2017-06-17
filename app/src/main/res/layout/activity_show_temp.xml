@@ -108,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="@color/beige">
+                android:background="@color/white">
 
                 <TextView
                     android:id="@+id/tv_drySet1"
@@ -256,7 +256,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="@color/color_line_bg">
+                android:background="@color/white">
 
                 <TextView
                     android:id="@+id/tv_wetSet1"
@@ -404,7 +404,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="@color/thistle"
+                android:background="@color/white"
                 android:orientation="horizontal">
 
                 <TextView
@@ -552,7 +552,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="@color/tan"
+                android:background="@color/white"
                 android:orientation="horizontal">
 
                 <View
@@ -710,7 +710,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
-                android:background="@color/violet"
+                android:background="@color/color_skyblue"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="0dp"
@@ -719,7 +719,19 @@
                     android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_darkslateblue" />
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
@@ -971,19 +983,7 @@
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/color_darkslateblue" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="19"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
 
                 <View
                     android:layout_width="1dp"

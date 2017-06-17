@@ -9,22 +9,25 @@
     <include android:id="@+id/include_head"
         layout="@layout/include_head" />
 
+
     <com.example.yuzelli.fluecuringmachine.widgets.RoundImageView
         android:id="@+id/img_icon"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_below="@+id/include_head"
+        android:layout_above="@+id/ll_content"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_app" />
+        android:src="@drawable/ic_app"/>
 
     <LinearLayout
+        android:id="@+id/ll_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/img_icon"
-        android:layout_marginTop="20dp"
         android:orientation="vertical"
+       android:layout_centerVertical="true"
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
 

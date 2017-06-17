@@ -13,6 +13,9 @@ public class NumTrans {
     private static String result[] ;
 
     public static String input(String inputString) {
+        if (inputString.equals("0")){
+            return "零";
+        }
        return get(inputString);
     }
 

@@ -26,6 +26,8 @@
         android:textSize="16sp"
         android:textColor="@color/black"
         android:layout_below="@+id/v_line"
+        android:inputType="textPassword"
+        android:paddingLeft="5dp"
         android:layout_marginTop="10dp"/>
     <LinearLayout
         android:layout_width="match_parent"

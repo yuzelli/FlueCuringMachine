@@ -30,13 +30,10 @@ public abstract class BaseActivity extends FragmentActivity {
         // 隐藏actionBar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         // 隐藏通知栏
-        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-        // WindowManager.LayoutParams.FLAG_FULLSCREEN);
+         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+         WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-//		if (!openedActivitys.keySet().contains(getClass().getSimpleName())) {
-//			openedActivitys.put(getClass().getSimpleName(),
-//					new WeakReference<Activity>(this));
-//		}
+
         this.savedInstanceState = savedInstanceState;
 
         setContentView(layoutInit());

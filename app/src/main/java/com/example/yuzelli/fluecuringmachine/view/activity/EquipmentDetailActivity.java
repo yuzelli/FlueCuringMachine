@@ -1,6 +1,9 @@
 package com.example.yuzelli.fluecuringmachine.view.activity;
 
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -46,8 +49,6 @@ public class EquipmentDetailActivity extends BaseActivity {
 
     @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.tv_shangxiapeng)
-    TextView tvShangxiapeng;
 
     @BindView(R.id.tv_water_content)
     TextView tvWaterContent;
@@ -192,25 +193,25 @@ public class EquipmentDetailActivity extends BaseActivity {
 
     private void updataView() {
 
-        tvPeriodNum.setText(equiDetail.getSystemData().getPeriodNum());
+        tvPeriodNum.setText(equiDetail.getSystemData().getPeriod());
         tvTotalTime.setText(equiDetail.getSystemData().getTotalTime());
-        tvDryTarget.setText(equiDetail.getSystemData().getDryTarget());
-        tvWetTarget.setText(equiDetail.getSystemData().getWetTarget());
+        tvDryTarget.setText("目标:"+equiDetail.getSystemData().getDryTarget());
+        tvWetTarget.setText("目标:"+equiDetail.getSystemData().getWetTarget());
         String systemStatus = equiDetail.getSystemData().getSystemStatus();
         String shangxiapenStataus = systemStatus.substring(1, 2);
-        if (shangxiapenStataus.equals("1")) {
-            tvShangxiapeng.setText("上棚");
-            tvUpwetTemperature.setText(equiDetail.getSystemData().getUpwetTemperature());
-            tvUpdryTemperature.setText(equiDetail.getSystemData().getUpdryTemperature());
-        } else {
-            tvShangxiapeng.setText("下棚");
-            tvUpwetTemperature.setText(equiDetail.getSystemData().getDownwetTemperature());
-            tvUpdryTemperature.setText(equiDetail.getSystemData().getDowndryTemperature());
-        }
+//        if (shangxiapenStataus.equals("1")) {
+//            tvShangxiapeng.setText("上棚");
+            tvUpwetTemperature.setText("上棚:"+equiDetail.getSystemData().getUpwetTemperature()+"\n\n"+"下棚:"+equiDetail.getSystemData().getDownwetTemperature());
+            tvUpdryTemperature.setText("上棚:"+equiDetail.getSystemData().getUpdryTemperature()+"\n\n"+"下棚:"+equiDetail.getSystemData().getDowndryTemperature());
+//        } else {
+//            tvShangxiapeng.setText("下棚");
+//            tvUpwetTemperature.setText(equiDetail.getSystemData().getDownwetTemperature());
+//            tvUpdryTemperature.setText(equiDetail.getSystemData().getDowndryTemperature());
+//        }
         SetSystem(systemStatus);
 
         tvVoltage.setText(equiDetail.getSystemData().getVoltage());
-        tvNum.setText("第" + NumTrans.input((equiDetail.getSystemData().getTimes() + 1) + "") + "轮");
+        tvNum.setText("第" + NumTrans.input((equiDetail.getSystemData().getTimes()) + "") + "轮");
 
         doShowWarning();
     }
@@ -274,43 +275,48 @@ public class EquipmentDetailActivity extends BaseActivity {
      */
     private void doShowWarning() {
 
-        ArrayList<Integer> warn = new ArrayList<>();
+      String title = equiDetail.getDevice().getDeviceName();
+        StringBuffer buffer = new StringBuffer();
         for (String str : equiDetail.getAlarms()) {
             int index = Integer.valueOf(str);
             switch (index) {
                 case 1:
-                    showWarning("偏高",1);
+                    buffer.append("偏高\n");
                     break;
                 case 2:
-                    showWarning("严重偏高\n检查传感器或者设备",0);
+                    buffer.append("严重偏高-检查传感器或者设备\n");
                     break;
                 case 3:
-                    showWarning("运行超时\n请重新确认数据",1);
+                    buffer.append("运行超时-请重新确认数据\n");
                     break;
                 case 4:
-                    showWarning("电压超过260V\n检查供电电源",0);
+                    buffer.append("电压超过260V-检查供电电源\n");
                     break;
                 case 5:
-                    showWarning("电压低于170V\n检查供电电源",0);
+                    buffer.append("电压低于170V-检查供电电源\n");
                     break;
                 case 6:
-                    showWarning("设备未连接\n可能关机或者停机",1);
+                    buffer.append("设备未连接-可能关机或者停机\n");
                     break;
                 case 7:
-                    showWarning("风机过载\n请检查风机和供电电源",0);
+                    buffer.append("风机过载-请检查风机和供电电源\n");
                     break;
                 case 8:
-                    showWarning("风机无电流\n请检查风机和供电电源",0);
+                    buffer.append("风机无电流-请检查风机和供电电源\n");
                     break;
                 case 9:
-                    showWarning("目标棚传感器故障\n检查传感器或者设备",0);
+                    buffer.append("目标棚传感器故障-检查传感器或者设备\n");
                     break;
                 case 10:
-                    showWarning("参考棚传感器故障\n检查传感器或者设备",1);
+                    buffer.append("参考棚传感器故障-检查传感器或者设备\n");
                     break;
                 default:
                     break;
             }
+        }
+
+        if (equiDetail.getAlarms().size()>0){
+            showWarning(title,buffer.toString());
         }
 
     }
@@ -360,19 +366,12 @@ public class EquipmentDetailActivity extends BaseActivity {
         dialog.show();
     }
 
-    private void showWarning(String title,int index) {
+    private void showWarning(String title,String contentText) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);// 构建
-        if (index==1){
-            builder.setTitle("警告！");
-        }else {
-            builder.setTitle("严重警告！");
-        }
-
-        builder.setMessage(title);
+            builder.setTitle(title+"设备警告！");
+        builder.setMessage(contentText);
         // 添加确定按钮 listener事件是继承与DialogInerface的
         builder.setPositiveButton("确定", null);
-         builder.show();
-
-
+        builder.show();
     }
 }

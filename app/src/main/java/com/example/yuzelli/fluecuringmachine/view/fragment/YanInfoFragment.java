@@ -161,6 +161,8 @@ public class YanInfoFragment extends BaseFragment {
                 if (position%2!=0)
                 {
                     ll_cell.setBackgroundColor(Color.parseColor("#5587ceeb"));
+                }else {
+                    ll_cell.setBackgroundColor(Color.parseColor("#ffffff"));
                 }
 
                 helper.setText(R.id.tv_deviceName, item.getDeviceName());

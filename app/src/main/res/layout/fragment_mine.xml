@@ -23,23 +23,30 @@
             android:gravity="center"
             android:text="联系客服"
             android:textSize="30dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"/>
 
         <TextView
             android:id="@+id/tv_change_pass"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/darkgray"
+            android:background="@color/color_skyblue"
             android:gravity="center"
             android:text="修改密码"
             android:textSize="30dp" />
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"/>
         <TextView
             android:id="@+id/tv_exit_login"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/salmon"
+            android:background="@color/color_skyblue"
             android:gravity="center"
             android:text="退出登陆"
             android:textSize="30dp" />

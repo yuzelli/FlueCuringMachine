@@ -20,7 +20,7 @@
                 android:gravity="center"
                 android:textSize="18sp"
                 android:text="烤房的安装"
-                android:background="@color/turquoise"/>
+                android:background="@color/color_skyblue"/>
             <com.example.yuzelli.fluecuringmachine.utils.ListViewForScrollViewUtil
                 android:id="@+id/lv_install"
                 android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 android:gravity="center"
                 android:textSize="18sp"
                 android:text="烤前准备"
-                android:background="@color/turquoise"/>
+                android:background="@color/color_skyblue"/>
             <com.example.yuzelli.fluecuringmachine.utils.ListViewForScrollViewUtil
                 android:id="@+id/lv_getReady"
                 android:layout_width="match_parent"
@@ -42,7 +42,7 @@
                 android:gravity="center"
                 android:textSize="18sp"
                 android:text="烤房设备维护"
-                android:background="@color/turquoise"/>
+                android:background="@color/color_skyblue"/>
             <com.example.yuzelli.fluecuringmachine.utils.ListViewForScrollViewUtil
                 android:id="@+id/lv_maintain"
                 android:layout_width="match_parent"
