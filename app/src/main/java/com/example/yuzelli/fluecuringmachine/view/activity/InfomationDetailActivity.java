@@ -19,6 +19,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.poi.hwpf.HWPFDocument;
@@ -35,6 +37,7 @@ import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 import com.example.yuzelli.fluecuringmachine.R;
 import com.example.yuzelli.fluecuringmachine.base.BaseActivity;
+import com.example.yuzelli.fluecuringmachine.bean.WordBean;
 import com.example.yuzelli.fluecuringmachine.utils.AssetsCopyTOSDcard;
 
 import butterknife.BindView;
@@ -74,6 +77,10 @@ public class InfomationDetailActivity extends BaseActivity {
 
     private Activity activity;
 
+    private int postionIndex;
+
+    private ArrayList<WordBean> wordsList;
+
     @Override
     protected int layoutInit() {
         return R.layout.activity_infomation_detail;
@@ -86,13 +93,17 @@ public class InfomationDetailActivity extends BaseActivity {
         Intent intent = getIntent();
         //WebView加载显示本地html文件
         tvTitle.setText(intent.getStringExtra("title"));
-
+        postionIndex = intent.getIntExtra("whiceOne",-1);
         screenWidth = this.getWindowManager().getDefaultDisplay().getWidth() - 10;
 
         nameStr = "app.doc";
         String path = "";
 //        AssetsCopyTOSDcard assetsCopyTOSDcard=new AssetsCopyTOSDcard(getApplicationContext());
 //        assetsCopyTOSDcard.AssetToSD(path,Environment.getExternalStorageDirectory().toString()+"/"+path);
+
+        boolean flag = findWhiceOne();
+
+
         CopyAssets(this,nameStr,Environment.getExternalStorageDirectory().toString()+"/"+nameStr);
         getRange();
 
@@ -114,9 +125,37 @@ public class InfomationDetailActivity extends BaseActivity {
 
     }
 
-    public static void actionStart(Context context, String title) {
+    /**
+     * 判断传输过来的文件
+     */
+    private boolean findWhiceOne() {
+        if (postionIndex==-1){
+            return false;
+        }
+
+        List<String> list = new ArrayList<>(Arrays.asList(new String[]{"气流上升式的安装","气流下降式的安装","大密集烤房安装",
+                "普改密的安装","烟叶的分类编杆", "气流下降式装烟应注意的事项",
+                "炉堂维护","发电机的使用和维护","循环风机和自控的维护"}));
+        for (int i= 0; i<list.size();i++){
+            WordBean word = new WordBean("气流上升式的安装","word"+i+".doc","word"+i+".doc");
+            wordsList.add(word);
+        }
+        updataLoadWordSetting(wordsList.get(postionIndex));
+
+        return true;
+    }
+
+    /**
+     * 配置传输的文件
+     * @param wordBean
+     */
+    private void updataLoadWordSetting(WordBean wordBean) {
+    }
+
+    public static void actionStart(Context context, String title,int whiceOne) {
         Intent intent = new Intent(context, InfomationDetailActivity.class);
         intent.putExtra("title", title);
+        intent.putExtra("whiceOne", whiceOne);
         context.startActivity(intent);
     }
 

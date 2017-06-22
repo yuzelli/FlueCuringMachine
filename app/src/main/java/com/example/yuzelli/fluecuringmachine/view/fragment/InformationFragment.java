@@ -69,22 +69,24 @@ public class InformationFragment extends BaseFragment {
                 helper.setText(R.id.tv_cotent,item);
             }
         });
-        lvGetReady.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                InfomationDetailActivity.actionStart(getActivity(),list2.get(position));
-            }
-        });
         lvInstall.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                InfomationDetailActivity.actionStart(getActivity(),list.get(position));
+                InfomationDetailActivity.actionStart(getActivity(),list.get(position),position);
             }
         });
+
+        lvGetReady.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                InfomationDetailActivity.actionStart(getActivity(),list2.get(position),position+4);
+            }
+        });
+
         lvMaintain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                InfomationDetailActivity.actionStart(getActivity(),list3.get(position));
+                InfomationDetailActivity.actionStart(getActivity(),list3.get(position),position+4+2);
             }
         });
     }
