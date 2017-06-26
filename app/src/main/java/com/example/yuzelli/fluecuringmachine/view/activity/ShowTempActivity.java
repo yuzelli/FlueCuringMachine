@@ -624,6 +624,9 @@ private Context context;
                     showToast("成功修改参数！");
                     finish();
                     break;
+                case ConstantsUtils.TOKEN_FALSE:
+                    LoginActivity.actionStart(context,true);
+                    break;
                 default:
                     break;
             }

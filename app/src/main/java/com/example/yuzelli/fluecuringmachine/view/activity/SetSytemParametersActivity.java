@@ -66,7 +66,9 @@ public class SetSytemParametersActivity extends BaseActivity {
     protected int layoutInit() {
         return R.layout.activity_set_sytem_parameters;
     }
-     private Context context;
+
+    private Context context;
+
     @Override
     protected void binEvent() {
         context = this;
@@ -157,7 +159,7 @@ public class SetSytemParametersActivity extends BaseActivity {
                                 showToast("参数错误！");
                                 break;
                             case 10002:
-                                showToast("没有权限！");
+                                handler.sendEmptyMessage(ConstantsUtils.TOKEN_FALSE);
                                 break;
                             default:
                                 break;
@@ -199,6 +201,9 @@ public class SetSytemParametersActivity extends BaseActivity {
             switch (msg.what) {
                 case ConstantsUtils.SET_SYSTEM_SSP:
                     finish();
+                    break;
+                case ConstantsUtils.TOKEN_FALSE:
+                    LoginActivity.actionStart(context,true);
                     break;
                 default:
                     break;

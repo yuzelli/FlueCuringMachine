@@ -20,6 +20,7 @@ import com.example.yuzelli.fluecuringmachine.bean.UserInfoBean;
 import com.example.yuzelli.fluecuringmachine.constants.ConstantsUtils;
 import com.example.yuzelli.fluecuringmachine.utils.SharePreferencesUtil;
 import com.example.yuzelli.fluecuringmachine.view.activity.ChangePassActivity;
+import com.example.yuzelli.fluecuringmachine.view.activity.LoginActivity;
 import com.example.yuzelli.fluecuringmachine.view.activity.MainActivity;
 
 import butterknife.BindView;
@@ -54,7 +55,7 @@ public class MineFragment extends BaseFragment {
     public void tvExitLogin() {
         SharePreferencesUtil.saveObject(context, ConstantsUtils.USER_LOGIN_INFO, null);
         getActivity().finish();
-        MainActivity.actionStart(context);
+        LoginActivity.actionStart(context,false);
     }
 
     private void showPopupWindow() {

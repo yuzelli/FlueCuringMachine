@@ -15,8 +15,10 @@ public class ConstantsUtils {
     public static final int SET_SYSTEM = 0x00001006;
     public static final int SET_SYSTEM_SSP = 0x00001007;
     public static final int SET_TEMP_POSS= 0x00001008;
+    public static final int SPLASH_START_ACTIVITY= 0x00001009;
+    public static final int TOKEN_FALSE= 0x00001010;
 
-    public static final String ADDRESS_URL = "http://60.205.214.66:8080/emanager/rest/";
+    public static final String ADDRESS_URL = "http://47.94.240.110:8080/emanager/rest/";
     public static final String USERINFO_LOGIN = "devicemanage/login/";
     public static final String EQUIPMENT_LIST = "devicemanage/device/list/";
     public static final String EQUIPMENT_DETAIL = "devicemanage/device/";

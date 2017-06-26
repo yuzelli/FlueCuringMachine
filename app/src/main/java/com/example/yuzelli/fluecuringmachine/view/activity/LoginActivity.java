@@ -31,7 +31,7 @@ import butterknife.OnClick;
 import okhttp3.Request;
 
 public class LoginActivity extends BaseActivity {
-
+    private boolean isAgainFlag = false;
     @BindView(R.id.img_icon)
     RoundImageView imgIcon;
     @BindView(R.id.et_username)
@@ -68,7 +68,7 @@ public class LoginActivity extends BaseActivity {
                         msg.what = ConstantsUtils.LOGIN_GET_DATA;
                         JSONObject json = object.optJSONObject("data");
                         String token = json.optString("token");
-                        UserInfoBean userInfo = new UserInfoBean(userName, password,token);
+                        UserInfoBean userInfo = new UserInfoBean(userName, password, token);
                         msg.obj = userInfo;
                         showToast("登陆成功！");
                         handler.sendMessage(msg);
@@ -80,7 +80,7 @@ public class LoginActivity extends BaseActivity {
                         showToast("参数错误！");
                         break;
                     case 10002:
-                        showToast("没有权限！");
+
                         break;
                     default:
                         break;
@@ -88,6 +88,7 @@ public class LoginActivity extends BaseActivity {
             }
         });
     }
+
 
     @OnClick(R.id.tv_register)
     public void tvRegister() {
@@ -106,15 +107,18 @@ public class LoginActivity extends BaseActivity {
     protected void binEvent() {
         context = this;
         handler = new LoginHandler();
+        isAgainFlag = getIntent().getBooleanExtra("isAgainFlag",false);
     }
+
 
     @Override
     protected void fillData() {
 
     }
 
-    public static void actionStart(Context context) {
+    public static void actionStart(Context context, boolean isAgainFlag) {
         Intent intent = new Intent(context, LoginActivity.class);
+        intent.putExtra("isAgainFlag", isAgainFlag);
         context.startActivity(intent);
     }
 
@@ -124,13 +128,13 @@ public class LoginActivity extends BaseActivity {
             super.handleMessage(msg);
             switch (msg.what) {
                 case ConstantsUtils.LOGIN_GET_DATA:
-                    UserInfoBean userInfo = (UserInfoBean) msg.obj;
-                    SharePreferencesUtil.saveObject(context, ConstantsUtils.USER_LOGIN_INFO, userInfo);
-                    userInfo = (UserInfoBean) SharePreferencesUtil.readObject(context, ConstantsUtils.USER_LOGIN_INFO);
-                    if (userInfo != null) {
+                    UserInfoBean u = (UserInfoBean) msg.obj;
+                    SharePreferencesUtil.saveObject(context, ConstantsUtils.USER_LOGIN_INFO, u);
+                    u = (UserInfoBean) SharePreferencesUtil.readObject(context, ConstantsUtils.USER_LOGIN_INFO);
+                    if (u != null) {
                         MainActivity.actionStart(context);
                         finish();
-                    }else {
+                    } else {
                         showToast("保存用户信息失败！请重新登陆！");
                     }
                     break;
@@ -139,18 +143,22 @@ public class LoginActivity extends BaseActivity {
             }
         }
     }
+
     long exitTime = 0;
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-            if ((System.currentTimeMillis() - exitTime) > 2000) {
-                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
-                exitTime = System.currentTimeMillis();
-            } else {
-               // finish();
-                System.exit(0);
+        if (!isAgainFlag) {
+            if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+                if ((System.currentTimeMillis() - exitTime) > 2000) {
+                    Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                    exitTime = System.currentTimeMillis();
+                } else {
+                    // finish();
+                    System.exit(0);
+                }
+                return true;
             }
-            return true;
         }
         return super.onKeyDown(keyCode, event);
     }

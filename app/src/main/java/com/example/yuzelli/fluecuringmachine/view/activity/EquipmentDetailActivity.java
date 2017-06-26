@@ -1,14 +1,10 @@
 package com.example.yuzelli.fluecuringmachine.view.activity;
 
 import android.app.Dialog;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.net.VpnService;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -34,7 +30,6 @@ import com.google.gson.Gson;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,46 +41,53 @@ public class EquipmentDetailActivity extends BaseActivity {
 
     @BindView(R.id.rl_black)
     RelativeLayout rl_black;
-
     @BindView(R.id.tv_title)
     TextView tvTitle;
-
     @BindView(R.id.tv_water_content)
     TextView tvWaterContent;
-
     @BindView(R.id.tv_baking)
     TextView tvBaking;
-
     @BindView(R.id.tv_wind)
     TextView tvWind;
-
     @BindView(R.id.tv_voltage)
     TextView tvVoltage;
-    @BindView(R.id.rl_voltage)
-    RelativeLayout rlVoltage;
     @BindView(R.id.tv_num)
     TextView tvNum;
     @BindView(R.id.rl_num)
     RelativeLayout rlNum;
-
     @BindView(R.id.tv_updryTemperature)
     TextView tvUpdryTemperature;
     @BindView(R.id.tv_upwetTemperature)
     TextView tvUpwetTemperature;
-    @BindView(R.id.tv_periodNum)
-    TextView tvPeriodNum;
+    @BindView(R.id.tv_period)
+    TextView tvPeriod;
     @BindView(R.id.tv_totalTime)
     TextView tvTotalTime;
     @BindView(R.id.tv_dryTarget)
     TextView tvDryTarget;
     @BindView(R.id.tv_wetTarget)
     TextView tvWetTarget;
+    @BindView(R.id.tv_dowmdryTemperature)
+    TextView tvDowmdryTemperature;
+    @BindView(R.id.tv_downwetTemperature)
+    TextView tvDownwetTemperature;
+    @BindView(R.id.moshi)
+    TextView moshi;
+    @BindView(R.id.tv_jieduan)
+    TextView tvJieduan;
+    @BindView(R.id.tv_state)
+    TextView tvState;
+    @BindView(R.id.tv_go)
+    TextView tvGo;
+    @BindView(R.id.tv_show_num)
+    TextView tvShowNum;
+
     private EquipmentDetailBean equiDetail;
     private EDHandler handler;
     private Context context;
     private String deviceID;
 
-    @OnClick({R.id.rl_set_tempAndTime, R.id.rl_set_baking, R.id.rl_set_water_content, R.id.rl_set_system})
+    @OnClick({R.id.rl_set_tempAndTime, R.id.rl_set_baking, R.id.rl_set_water_content, R.id.rl_set_system, R.id.rl_num})
     public void onViewClick(View v) {
         switch (v.getId()) {
             case R.id.rl_set_tempAndTime:
@@ -95,6 +97,9 @@ public class EquipmentDetailActivity extends BaseActivity {
                 showPopupWindow("2");
                 break;
             case R.id.rl_set_water_content:
+                showPopupWindow("2");
+                break;
+            case R.id.rl_num:
                 showPopupWindow("2");
                 break;
             case R.id.rl_set_system:
@@ -132,7 +137,7 @@ public class EquipmentDetailActivity extends BaseActivity {
         OkHttpClientManager.getInstance().getAsync(url.toString(), new OkHttpClientManager.DataCallBack() {
             @Override
             public void requestFailure(Request request, IOException e) {
-           BaiduLoading.onStopDialog();
+                BaiduLoading.onStopDialog();
                 showToast("加载网路数据失败！");
             }
 
@@ -150,7 +155,9 @@ public class EquipmentDetailActivity extends BaseActivity {
                 } else if (errorCode == 10001) {
                     showToast("参数错误！");
                 } else if (errorCode == 10002) {
-                    showToast("没有权限！");
+                     handler.sendEmptyMessage(ConstantsUtils.TOKEN_FALSE);
+
+
                 } else {
                     showToast("获取数据失败！");
                 }
@@ -158,7 +165,21 @@ public class EquipmentDetailActivity extends BaseActivity {
             }
         });
     }
+    private void showToken() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("错误");
+        builder.setMessage("用户登录凭证已超时,是否重新登录");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                    LoginActivity.actionStart(context,true);
+            }
+        });
+        builder.setNegativeButton("取消", null);
+        builder.show();
 
+
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -177,6 +198,13 @@ public class EquipmentDetailActivity extends BaseActivity {
         context.startActivity(intent);
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
     class EDHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
@@ -184,6 +212,9 @@ public class EquipmentDetailActivity extends BaseActivity {
             switch (msg.what) {
                 case ConstantsUtils.EQUIPMENT_DETAIL_GET_DATA:
                     updataView();
+                    break;
+                case ConstantsUtils.TOKEN_FALSE:
+                    showToken();
                     break;
                 default:
                     break;
@@ -193,26 +224,31 @@ public class EquipmentDetailActivity extends BaseActivity {
 
     private void updataView() {
 
-        tvPeriodNum.setText(equiDetail.getSystemData().getPeriod());
-        tvTotalTime.setText(equiDetail.getSystemData().getTotalTime());
-        tvDryTarget.setText("目标:"+equiDetail.getSystemData().getDryTarget());
-        tvWetTarget.setText("目标:"+equiDetail.getSystemData().getWetTarget());
+        tvPeriod.setText(equiDetail.getSystemData().getPeriod()+"(剩余阶段时间)");
+        tvTotalTime.setText(equiDetail.getSystemData().getTotalTime()+"(总时间)");
+        tvDryTarget.setText(equiDetail.getSystemData().getDryTarget()+"(目标)");
+        tvWetTarget.setText(equiDetail.getSystemData().getWetTarget()+"(目标)");
         String systemStatus = equiDetail.getSystemData().getSystemStatus();
         String shangxiapenStataus = systemStatus.substring(1, 2);
-//        if (shangxiapenStataus.equals("1")) {
-//            tvShangxiapeng.setText("上棚");
-            tvUpwetTemperature.setText("上棚:"+equiDetail.getSystemData().getUpwetTemperature()+"\n\n"+"下棚:"+equiDetail.getSystemData().getDownwetTemperature());
-            tvUpdryTemperature.setText("上棚:"+equiDetail.getSystemData().getUpdryTemperature()+"\n\n"+"下棚:"+equiDetail.getSystemData().getDowndryTemperature());
-//        } else {
-//            tvShangxiapeng.setText("下棚");
-//            tvUpwetTemperature.setText(equiDetail.getSystemData().getDownwetTemperature());
-//            tvUpdryTemperature.setText(equiDetail.getSystemData().getDowndryTemperature());
-//        }
+        if (shangxiapenStataus.equals("1")) {
+            tvState.setText("上棚目标");
+       } else {
+            tvState.setText("下棚目标");
+        }
+        tvUpwetTemperature.setText(equiDetail.getSystemData().getUpwetTemperature()+"(上棚)");
+        tvUpdryTemperature.setText(equiDetail.getSystemData().getUpdryTemperature()+"(上棚)");
+        tvDownwetTemperature.setText(equiDetail.getSystemData().getDownwetTemperature()+"(下棚)");
+        tvDowmdryTemperature.setText( equiDetail.getSystemData().getDowndryTemperature()+"(下棚)");
         SetSystem(systemStatus);
-
-        tvVoltage.setText(equiDetail.getSystemData().getVoltage());
-        tvNum.setText("第" + NumTrans.input((equiDetail.getSystemData().getTimes()) + "") + "轮");
-
+        tvVoltage.setText(equiDetail.getSystemData().getVoltage()+"(电压)");
+        tvShowNum.setText("第" +equiDetail.getSystemData().getTimes()+ "次");
+        moshi.setText("曲线模式");
+        tvJieduan.setText(equiDetail.getSystemData().getPeriodNum()+"(运行阶段)");
+        if (equiDetail.getSystemData().getGo()==1){
+            tvGo.setText("运行");
+        }else {
+            tvGo.setText("停止");
+        }
         doShowWarning();
     }
 
@@ -268,6 +304,9 @@ public class EquipmentDetailActivity extends BaseActivity {
             default:
                 break;
         }
+        int cishu = Integer.valueOf(systemStatus.substring(4, 5));
+        tvNum.setText("第" +cishu+ "次");
+
     }
 
     /**
@@ -275,16 +314,16 @@ public class EquipmentDetailActivity extends BaseActivity {
      */
     private void doShowWarning() {
 
-      String title = equiDetail.getDevice().getDeviceName();
+        String title = equiDetail.getDevice().getDeviceName();
         StringBuffer buffer = new StringBuffer();
         for (String str : equiDetail.getAlarms()) {
             int index = Integer.valueOf(str);
             switch (index) {
                 case 1:
-                    buffer.append("偏高\n");
+                    buffer.append("偏温\n");
                     break;
                 case 2:
-                    buffer.append("严重偏高-检查传感器或者设备\n");
+                    buffer.append("严重偏温-检查传感器或者设备\n");
                     break;
                 case 3:
                     buffer.append("运行超时-请重新确认数据\n");
@@ -315,8 +354,8 @@ public class EquipmentDetailActivity extends BaseActivity {
             }
         }
 
-        if (equiDetail.getAlarms().size()>0){
-            showWarning(title,buffer.toString());
+        if (equiDetail.getAlarms().size() > 0) {
+            showWarning(title, buffer.toString());
         }
 
     }
@@ -349,7 +388,7 @@ public class EquipmentDetailActivity extends BaseActivity {
                         ShowTempActivity.actionStart(context, equiDetail.getCoreData(), equiDetail.getDevice().getDeviceId() + "");
                     }
                     if (where.equals("2")) {
-                        SetSystemActivity.actionStart(context, equiDetail.getSystemData().getSystemStatus(), equiDetail.getDevice().getDeviceId() + "");
+                        SetSystemActivity.actionStart(context, equiDetail.getSystemData().getSystemStatus(), equiDetail.getDevice().getDeviceId() + "", equiDetail.getSystemData().getTimes());
                     }
                     if (where.equals("3")) {
                         SetSytemParametersActivity.actionStart(context, equiDetail);
@@ -366,9 +405,9 @@ public class EquipmentDetailActivity extends BaseActivity {
         dialog.show();
     }
 
-    private void showWarning(String title,String contentText) {
+    private void showWarning(String title, String contentText) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);// 构建
-            builder.setTitle(title+"设备警告！");
+        builder.setTitle(title + "设备警告！");
         builder.setMessage(contentText);
         // 添加确定按钮 listener事件是继承与DialogInerface的
         builder.setPositiveButton("确定", null);

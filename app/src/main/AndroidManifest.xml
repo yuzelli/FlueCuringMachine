@@ -14,23 +14,29 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".view.activity.MainActivity"
+           >
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         >
         <activity
-            android:name=".view.activity.LoginActivity" />
+            android:name=".view.activity.LoginActivity" >
+
+        </activity>
         <activity android:name=".view.activity.RegisterActivity" />
         <activity android:name=".view.activity.EquipmentDetailActivity" />
         <activity android:name=".view.activity.ChangePassActivity" />
         <activity android:name=".view.activity.InfomationDetailActivity" />
         <activity android:name=".view.activity.ShowTempActivity" />
         <activity android:name=".view.activity.SetSystemActivity" />
-        <activity android:name=".view.activity.SetSytemParametersActivity"></activity>
+        <activity android:name=".view.activity.SetSytemParametersActivity"/>
+        <activity android:name=".view.activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -27,6 +27,7 @@ import com.example.yuzelli.fluecuringmachine.utils.GsonUtils;
 import com.example.yuzelli.fluecuringmachine.utils.SharePreferencesUtil;
 import com.example.yuzelli.fluecuringmachine.utils.ViewHolder;
 import com.example.yuzelli.fluecuringmachine.view.activity.EquipmentDetailActivity;
+import com.example.yuzelli.fluecuringmachine.view.activity.LoginActivity;
 import com.example.yuzelli.fluecuringmachine.view.activity.MainActivity;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -109,7 +110,7 @@ public class YanInfoFragment extends BaseFragment {
                 } else if (errorCode==10001){
                     showToast("参数错误！");
                 }else if (errorCode==10002){
-                    showToast("没有权限！");
+                    handler.sendEmptyMessage(ConstantsUtils.TOKEN_FALSE);
                 }else  {
                     showToast("获取数据失败！");
                 }
@@ -125,6 +126,10 @@ public class YanInfoFragment extends BaseFragment {
             switch (msg.what) {
                 case ConstantsUtils.EQUIPMENT_LIST_GET_DATA:
                     upDataList();
+                    break;
+
+                case ConstantsUtils.TOKEN_FALSE:
+                    LoginActivity.actionStart(getActivity(),true);
                     break;
                 default:
                     break;

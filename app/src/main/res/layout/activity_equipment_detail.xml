@@ -13,16 +13,18 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/include_head">
         <RelativeLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
            >
             <RelativeLayout
                 android:id="@+id/rl_detail1"
                 android:layout_width="match_parent"
-                android:layout_height="300.5dp">
+                android:layout_height="wrap_content">
                 <RelativeLayout
+                    android:id="@+id/rl_content"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp">
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:id="@+id/ll_title"
@@ -30,13 +32,17 @@
                         android:layout_height="60dp"
                         android:orientation="horizontal"
                        >
+
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1.5"
+                            android:layout_weight="1"
                             android:gravity="center"
                             android:textColor="@color/black"
-                            android:text="干球温度℃"/>
+                            android:text="干球温度℃"
+                            android:textSize="16sp"
+                            android:id="@+id/textView" />
+
                         <View
                             android:layout_width="0.5dp"
                             android:layout_height="match_parent"
@@ -44,32 +50,36 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1.5"
+                            android:layout_weight="1"
                             android:gravity="center"
+                            android:textSize="16sp"
                             android:textColor="@color/black"
                             android:text="湿球温度℃"/>
                         <View
                             android:layout_width="0.5dp"
                             android:layout_height="match_parent"
                             android:background="@color/color_line_bg"/>
+
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
+                            android:layout_weight="1.5"
                             android:gravity="center"
-                            android:textColor="@color/black"
-                            android:text="阶段时间"/>
+                            android:textSize="16sp"
+                            android:id="@+id/tv_period" />
+
                         <View
                             android:layout_width="0.5dp"
                             android:layout_height="match_parent"
                             android:background="@color/color_line_bg"/>
                         <TextView
+                           android:id="@+id/tv_totalTime"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:textColor="@color/black"
-                            android:text="总时间"/>
+                            android:textSize="16sp"
+                         />
 
                     </LinearLayout>
                     <View
@@ -79,18 +89,21 @@
                         android:layout_below="@+id/ll_title"
                         android:background="@color/color_line_bg"/>
                     <LinearLayout
+                        android:id="@+id/ll_shangpeng"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="60dp"
                         android:orientation="horizontal"
                         android:layout_below="@+id/v_line4">
+
                         <TextView
                             android:id="@+id/tv_updryTemperature"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1.5"
+                            android:layout_weight="1"
                             android:gravity="center"
-                            android:textSize="20sp"
+                            android:textSize="16sp"
                            />
+
                         <View
                             android:layout_width="0.5dp"
                             android:layout_height="match_parent"
@@ -99,34 +112,99 @@
                             android:id="@+id/tv_upwetTemperature"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1.5"
+                            android:layout_weight="1"
                             android:gravity="center"
-                            android:textSize="20sp"
+                            android:textSize="16sp"
                            />
                         <View
                             android:layout_width="0.5dp"
                             android:layout_height="match_parent"
                             android:background="@color/color_line_bg"/>
+
                         <TextView
-                            android:id="@+id/tv_periodNum"
+                            android:id="@+id/tv_voltage"
+
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
+                            android:layout_weight="1.5"
                             android:gravity="center"
-                            android:textSize="30sp"
+                            android:textSize="16sp"
                          />
                         <View
                             android:layout_width="0.5dp"
                             android:layout_height="match_parent"
                             android:background="@color/color_line_bg"/>
+
                         <TextView
-                            android:id="@+id/tv_totalTime"
+                            android:id="@+id/tv_show_num"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:textSize="30sp"
+                            android:textSize="16sp"
                          />
+
+
+                    </LinearLayout>
+                    <View
+                        android:id="@+id/v_line5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_below="@+id/ll_shangpeng"
+                        android:background="@color/color_line_bg"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:layout_below="@+id/ll_shangpeng">
+                        <TextView
+                            android:id="@+id/tv_dowmdryTemperature"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textSize="16sp"
+                            />
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_line_bg"/>
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_line_bg"/>
+
+                        <TextView
+                            android:id="@+id/tv_downwetTemperature"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textSize="16sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/moshi"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            android:gravity="center"
+                            android:textSize="16sp"
+                            />
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_line_bg"/>
+                        <TextView
+                            android:id="@+id/tv_go"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textSize="16sp"
+                            />
 
                     </LinearLayout>
                 </RelativeLayout>
@@ -134,11 +212,11 @@
                     android:id="@+id/v_line1"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:layout_marginTop="200dp"
+                   android:layout_below="@+id/rl_content"
                     android:background="@color/color_line_bg"/>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="60dp"
                     android:layout_below="@+id/v_line1">
 
 
@@ -152,41 +230,50 @@
                             android:id="@+id/tv_dryTarget"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1.5"
+                            android:layout_weight="1"
                             android:gravity="center"
-                            android:textSize="30sp"
+                            android:textSize="16sp"
                            />
                         <View
                             android:layout_width="0.5dp"
                             android:layout_height="match_parent"
                             android:background="@color/color_line_bg"/>
+
                         <TextView
                             android:id="@+id/tv_wetTarget"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textSize="16sp"
+                          />
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_line_bg"/>
+
+                        <TextView
+                            android:id="@+id/tv_jieduan"
+
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="1.5"
                             android:gravity="center"
-                            android:textSize="30sp"
+                            android:textSize="16sp"
                           />
                         <View
                             android:layout_width="0.5dp"
                             android:layout_height="match_parent"
                             android:background="@color/color_line_bg"/>
+
                         <TextView
+                            android:id="@+id/tv_state"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            />
-                        <View
-                            android:layout_width="0.5dp"
-                            android:layout_height="match_parent"
-                            />
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
+                            android:textSize="16sp"
                           />
 
                     </LinearLayout>
@@ -203,8 +290,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp"
+
                 android:layout_below="@+id/v_line0">
+
+
                 <RelativeLayout
                     android:id="@+id/rl_set_tempAndTime"
                     android:layout_width="match_parent"
@@ -237,7 +326,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="烘烤位置"
+                        android:text="烟叶部位"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
                         android:textSize="18sp"
@@ -272,7 +361,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="烘烟叶水分"
+                        android:text="烟叶水分"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
                         android:textSize="18sp"
@@ -330,33 +419,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"/>
                 </RelativeLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_below="@+id/rl_detail1"
-                    android:background="@color/color_line_bg"/>
-                <RelativeLayout
-                    android:id="@+id/rl_voltage"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="电压"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="20dp"
-                        android:textSize="18sp"
-                        android:textColor="@color/black"/>
-                    <TextView
-                        android:id="@+id/tv_voltage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
 
-                        android:textSize="18sp"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"/>
-                </RelativeLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
@@ -369,7 +432,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="烘烤轮数"
+                        android:text="烘烤次数"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
                         android:textSize="18sp"
@@ -378,8 +441,14 @@
                         android:id="@+id/tv_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
                         android:textSize="18sp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="60dp"/>
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/ic_reght2"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"/>
