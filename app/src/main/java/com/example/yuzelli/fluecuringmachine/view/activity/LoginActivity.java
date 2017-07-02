@@ -108,6 +108,11 @@ public class LoginActivity extends BaseActivity {
         context = this;
         handler = new LoginHandler();
         isAgainFlag = getIntent().getBooleanExtra("isAgainFlag",false);
+        if(isAgainFlag){
+            UserInfoBean userInfoBean = (UserInfoBean) SharePreferencesUtil.readObject(context,ConstantsUtils.USER_LOGIN_INFO);
+            etUsername.setText(userInfoBean.getUserName());
+            etPassword.setText(userInfoBean.getPassWords());
+        }
     }
 
 

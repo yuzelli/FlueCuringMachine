@@ -72,21 +72,21 @@ public class InformationFragment extends BaseFragment {
         lvInstall.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                InfomationDetailActivity.actionStart(getActivity(),list.get(position),position);
+              //  InfomationDetailActivity.actionStart(getActivity(),list.get(position),position);
             }
         });
 
         lvGetReady.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                InfomationDetailActivity.actionStart(getActivity(),list2.get(position),position+4);
+               // InfomationDetailActivity.actionStart(getActivity(),list2.get(position),position+4);
             }
         });
 
         lvMaintain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                InfomationDetailActivity.actionStart(getActivity(),list3.get(position),position+4+2);
+             //   InfomationDetailActivity.actionStart(getActivity(),list3.get(position),position+4+2);
             }
         });
     }

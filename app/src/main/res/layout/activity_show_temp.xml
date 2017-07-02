@@ -116,7 +116,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -130,7 +130,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -144,7 +144,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -159,7 +159,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -173,7 +173,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -187,7 +187,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -201,7 +201,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -215,7 +215,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -229,7 +229,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -243,7 +243,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -264,7 +264,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -278,7 +278,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -292,7 +292,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -306,7 +306,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -320,7 +320,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -334,7 +334,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -348,7 +348,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -362,7 +362,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -376,7 +376,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -390,7 +390,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -413,7 +413,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -427,7 +427,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -441,7 +441,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -455,7 +455,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -469,7 +469,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -483,7 +483,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -497,7 +497,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -511,7 +511,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -525,7 +525,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -539,7 +539,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -559,7 +559,7 @@
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="16sp" />
 
                 <View
@@ -573,7 +573,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -587,7 +587,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -601,7 +601,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -615,7 +615,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -629,7 +629,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -643,7 +643,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -657,7 +657,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -671,7 +671,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
                 <View
@@ -685,7 +685,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="50.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
                 <View
                     android:layout_width="1dp"

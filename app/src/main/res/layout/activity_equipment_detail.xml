@@ -65,7 +65,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1.5"
                             android:gravity="center"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             android:id="@+id/tv_period" />
 
                         <View
@@ -78,7 +78,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                          />
 
                     </LinearLayout>
@@ -101,7 +101,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                            />
 
                         <View
@@ -114,7 +114,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                            />
                         <View
                             android:layout_width="0.5dp"
@@ -128,7 +128,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1.5"
                             android:gravity="center"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                          />
                         <View
                             android:layout_width="0.5dp"
@@ -141,7 +141,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                          />
 
 
@@ -164,17 +164,13 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             />
                         <View
                             android:layout_width="0.5dp"
                             android:layout_height="match_parent"
                             android:background="@color/color_line_bg"/>
 
-                        <View
-                            android:layout_width="0.5dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/color_line_bg"/>
 
                         <TextView
                             android:id="@+id/tv_downwetTemperature"
@@ -182,8 +178,12 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             />
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_line_bg"/>
 
                         <TextView
                             android:id="@+id/moshi"
@@ -191,7 +191,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1.5"
                             android:gravity="center"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             />
                         <View
                             android:layout_width="0.5dp"
@@ -203,7 +203,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             />
 
                     </LinearLayout>
@@ -232,7 +232,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                            />
                         <View
                             android:layout_width="0.5dp"
@@ -245,7 +245,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                           />
 
                         <View
@@ -260,7 +260,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1.5"
                             android:gravity="center"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                           />
                         <View
                             android:layout_width="0.5dp"
@@ -273,7 +273,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                           />
 
                     </LinearLayout>
@@ -294,31 +294,7 @@
                 android:layout_below="@+id/v_line0">
 
 
-                <RelativeLayout
-                    android:id="@+id/rl_set_tempAndTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="设置设备运行参数"
-                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="20dp"
-                        android:textSize="18sp"
-                        android:textColor="@color/black"/>
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@mipmap/ic_reght2"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"/>
-                </RelativeLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_below="@+id/rl_detail1"
-                    android:background="@color/color_line_bg"/>
+
                 <RelativeLayout
                     android:id="@+id/rl_set_baking"
                     android:layout_width="match_parent"
@@ -466,6 +442,31 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="系统参数设置"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/black"/>
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/ic_reght2"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"/>
+                  </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/rl_detail1"
+                    android:background="@color/color_line_bg"/>
+                <RelativeLayout
+                    android:id="@+id/rl_set_tempAndTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="曲线参数设置"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
                         android:textSize="18sp"

@@ -157,7 +157,7 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
         tvTitle.setText("当前设备详情");
         handler = new STHandler();
         tvAction.setVisibility(View.VISIBLE);
-        tvAction.setText("去设置");
+        tvAction.setText("设置完成");
         tvDrySet1.setText(coredata.getDrySet1());
         tvDrySet2.setText(coredata.getDrySet2());
         tvDrySet3.setText(coredata.getDrySet3());
@@ -202,7 +202,7 @@ public class ShowTempActivity extends BaseActivity implements View.OnClickListen
         tvTimeUp9.setText(coredata.getTimeUp9());
 
         tvAction.setOnClickListener(this);
-
+        doBeginSetAction();
     }
 
     @Override
@@ -506,6 +506,11 @@ private Context context;
                     showToast("请输入！");
                     return;
                 }
+                int num = Integer.valueOf(input);
+                if (num>=99){
+                    showToast("请输入小于等于99的数字！");
+                    return;
+                }
                 tv.setText(input);
                 tv.setTextColor(Color.BLACK);
                 int index = postion;
@@ -533,46 +538,7 @@ private Context context;
         for (int i = 0 ; i < 39 ; i ++){
             settingFlags.add(Boolean.FALSE);
         }
-        tvWetSet1.setTextColor(Color.GRAY);
-        tvWetSet2.setTextColor(Color.GRAY);
-        tvWetSet3.setTextColor(Color.GRAY);
-        tvWetSet4.setTextColor(Color.GRAY);
-        tvWetSet5.setTextColor(Color.GRAY);
-        tvWetSet6.setTextColor(Color.GRAY);
-        tvWetSet7.setTextColor(Color.GRAY);
-        tvWetSet8.setTextColor(Color.GRAY);
-        tvWetSet9.setTextColor(Color.GRAY);
-        tvWetSet10.setTextColor(Color.GRAY);
-        tvDrySet1.setTextColor(Color.GRAY);
-        tvDrySet2.setTextColor(Color.GRAY);
-        tvDrySet3.setTextColor(Color.GRAY);
-        tvDrySet4.setTextColor(Color.GRAY);
-        tvDrySet5.setTextColor(Color.GRAY);
-        tvDrySet6.setTextColor(Color.GRAY);
-        tvDrySet7.setTextColor(Color.GRAY);
-        tvDrySet8.setTextColor(Color.GRAY);
-        tvDrySet9.setTextColor(Color.GRAY);
-        tvDrySet10.setTextColor(Color.GRAY);
 
-        tvTimeSet1.setTextColor(Color.GRAY);
-        tvTimeSet2.setTextColor(Color.GRAY);
-        tvTimeSet3.setTextColor(Color.GRAY);
-        tvTimeSet4.setTextColor(Color.GRAY);
-        tvTimeSet5.setTextColor(Color.GRAY);
-        tvTimeSet6.setTextColor(Color.GRAY);
-        tvTimeSet7.setTextColor(Color.GRAY);
-        tvTimeSet8.setTextColor(Color.GRAY);
-        tvTimeSet9.setTextColor(Color.GRAY);
-        tvTimeSet10.setTextColor(Color.GRAY);
-        tvTimeUp1.setTextColor(Color.GRAY);
-        tvTimeUp2.setTextColor(Color.GRAY);
-        tvTimeUp3.setTextColor(Color.GRAY);
-        tvTimeUp4.setTextColor(Color.GRAY);
-        tvTimeUp5.setTextColor(Color.GRAY);
-        tvTimeUp6.setTextColor(Color.GRAY);
-        tvTimeUp7.setTextColor(Color.GRAY);
-        tvTimeUp8.setTextColor(Color.GRAY);
-        tvTimeUp9.setTextColor(Color.GRAY);
         tvWetSet1.setOnClickListener(this);
         tvWetSet2.setOnClickListener(this);
         tvWetSet3.setOnClickListener(this);

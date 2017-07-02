@@ -8,7 +8,7 @@
     <ImageView
         android:id="@+id/iv_spl_background"
         android:layout_width="match_parent"
-        android:src="@drawable/splash0"
+        android:src="@drawable/splash10"
         android:scaleType="fitXY"
         android:layout_height="match_parent" />
     <View

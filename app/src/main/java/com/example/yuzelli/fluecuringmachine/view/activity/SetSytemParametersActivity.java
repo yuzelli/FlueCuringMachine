@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.yuzelli.fluecuringmachine.R;
+import com.example.yuzelli.fluecuringmachine.adapter.SpinerAdapter;
 import com.example.yuzelli.fluecuringmachine.base.BaseActivity;
 import com.example.yuzelli.fluecuringmachine.bean.EquipmentDetailBean;
 import com.example.yuzelli.fluecuringmachine.bean.UserInfoBean;
@@ -85,8 +86,8 @@ public class SetSytemParametersActivity extends BaseActivity {
         for (int i = 0; i < 19; i++) {
             list.add(i + "");
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SpinerAdapter adapter = new SpinerAdapter(this, list);
+
         sprJieduan.setAdapter(adapter);
         sprJieduan.setSelection(jeduanIndex);
         sprJieduan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -101,8 +102,8 @@ public class SetSytemParametersActivity extends BaseActivity {
             }
         });
 
-        ArrayAdapter<String> moshiAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new ArrayList<>(Arrays.asList(new String[]{"曲线模式"})));
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SpinerAdapter moshiAdapter = new SpinerAdapter(this, new ArrayList<>(Arrays.asList(new String[]{"曲线模式"})));
+
         sprMoshi.setAdapter(moshiAdapter);
         sprMoshi.setSelection(0);
         sprMoshi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -117,8 +118,9 @@ public class SetSytemParametersActivity extends BaseActivity {
             }
         });
 
-        ArrayAdapter<String> zhuangtaiAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new ArrayList<>(Arrays.asList(new String[]{"停止", "运行"})));
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+       // ArrayAdapter<String> zhuangtaiAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new ArrayList<>(Arrays.asList(new String[]{"停止", "运行"})));
+        SpinerAdapter zhuangtaiAdapter = new SpinerAdapter(context,new ArrayList<>(Arrays.asList(new String[]{"停止", "运行"})));
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sprZhuangtai.setAdapter(zhuangtaiAdapter);
         sprZhuangtai.setSelection(zhuantaiIndex);
         sprZhuangtai.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

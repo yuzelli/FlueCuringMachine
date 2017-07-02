@@ -231,9 +231,9 @@ public class EquipmentDetailActivity extends BaseActivity {
         String systemStatus = equiDetail.getSystemData().getSystemStatus();
         String shangxiapenStataus = systemStatus.substring(1, 2);
         if (shangxiapenStataus.equals("1")) {
-            tvState.setText("上棚目标");
+            tvState.setText("上棚(目标)");
        } else {
-            tvState.setText("下棚目标");
+            tvState.setText("下棚(目标)");
         }
         tvUpwetTemperature.setText(equiDetail.getSystemData().getUpwetTemperature()+"(上棚)");
         tvUpdryTemperature.setText(equiDetail.getSystemData().getUpdryTemperature()+"(上棚)");
@@ -241,7 +241,7 @@ public class EquipmentDetailActivity extends BaseActivity {
         tvDowmdryTemperature.setText( equiDetail.getSystemData().getDowndryTemperature()+"(下棚)");
         SetSystem(systemStatus);
         tvVoltage.setText(equiDetail.getSystemData().getVoltage()+"(电压)");
-        tvShowNum.setText("第" +equiDetail.getSystemData().getTimes()+ "次");
+
         moshi.setText("曲线模式");
         tvJieduan.setText(equiDetail.getSystemData().getPeriodNum()+"(运行阶段)");
         if (equiDetail.getSystemData().getGo()==1){
@@ -304,9 +304,13 @@ public class EquipmentDetailActivity extends BaseActivity {
             default:
                 break;
         }
+        if (systemStatus.length() == 4) {
+            tvNum.setText("未设置");
+            return;
+        }
         int cishu = Integer.valueOf(systemStatus.substring(4, 5));
-        tvNum.setText("第" +cishu+ "次");
-
+        tvNum.setText(cishu+ "次");
+        tvShowNum.setText("第" +cishu+ "烤");
     }
 
     /**
