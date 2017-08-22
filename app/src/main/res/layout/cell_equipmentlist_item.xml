@@ -12,7 +12,7 @@
         android:layout_height="50dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="设备名称"
+
         android:textColor="@color/color_darkslateblue"
         android:textSize="14sp" />
 
@@ -27,7 +27,7 @@
         android:layout_height="50dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="设备序列号"
+
         android:textColor="@color/color_darkslateblue"
         android:textSize="14sp" />
 
@@ -42,7 +42,7 @@
         android:layout_height="50dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="设备类型"
+
         android:textColor="@color/color_darkslateblue"
         android:textSize="14sp" />
 
@@ -57,7 +57,7 @@
         android:layout_height="50dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="连接状态"
+android:text="在线"
         android:textColor="@color/color_darkslateblue"
         android:textSize="14sp" />
 
@@ -72,7 +72,7 @@
         android:layout_height="50dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="运行状态"
+
         android:textColor="@color/color_darkslateblue"
         android:textSize="14sp" />
 </LinearLayout>

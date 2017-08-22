@@ -176,15 +176,22 @@ public class YanInfoFragment extends BaseFragment {
                 switch (item.getState()) {
                     case -1:
                         helper.setText(R.id.tv_state, "离线");
+                        helper.setText(R.id.tv_run, "正常");
                         break;
                     case 0:
                         helper.setText(R.id.tv_state, "在线");
+                        helper.setText(R.id.tv_run, "正常");
                         break;
                     case 1:
-                        helper.setText(R.id.tv_state, "故障");
+                        helper.setText(R.id.tv_state, "在线");
+                        helper.setText(R.id.tv_run, "故障");
+                        break;
+                    case 2:
+                        helper.setText(R.id.tv_state, "在线");
+                        helper.setText(R.id.tv_run, "故障");
                         break;
                 }
-                helper.setText(R.id.tv_run, "正常");
+
             }
         });
 
